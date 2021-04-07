@@ -1,0 +1,32 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.circulo{
+    width: 125px;
+    height: 125px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #df7366;    
+}
+
+hr{
+    border: none; 
+    height: 1px;
+    color: #333;
+    background-color: grey;
+}
+
+h2{
+    font-weight: 400;
+    font-weight: 400;
+	color: #483949;
+	line-height: 1.25em;
+    margin-bottom: 2rem;
+}
