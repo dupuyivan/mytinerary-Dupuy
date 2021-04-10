@@ -7,12 +7,15 @@ export default class Cities extends React.Component{
     render(){
 
         return (
-            <div style={{ backgroundColor:"black" }}>
-                
-            <Header />
-            <h1 style={{ color:"white" }}>Cities</h1>
-            <Footer />
+            <>
+            <div  className="main" style={{ backgroundColor:"black" }}>
+            <Header logo={ true } />
+            
+            <h1 className="text-white text-center">Cities</h1>
+            
             </div>
+            <Footer />
+            </>
         )
 
     }

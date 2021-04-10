@@ -27,7 +27,7 @@ const CarouselComp = ( ) =>{
     let contador = 0
 
     return (
-        <Carousel fade className="black">
+        <Carousel fade >
             {  
               cities.map( object =>{
                 return(
