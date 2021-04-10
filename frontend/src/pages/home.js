@@ -19,7 +19,7 @@ export class Home extends React.Component {
                             <Hero />
                     </div>
                 </div>
-                    
+             { console.log("hola") }
                     <div className="bg-ligth" style={{ padding:"2rem 0", backgroundColor:"#F0F4F4"  }}>
 
                         <h2 style={{ textAlign:"center", fontWeight:"800", fontSize: "2.85em" }}>Popular MYtineraries</h2>
