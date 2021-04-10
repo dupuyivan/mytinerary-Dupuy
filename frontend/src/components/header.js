@@ -6,6 +6,9 @@ const header = ()=>{
     return(
         <header style={{ display:"flex", }}>
 
+        <h1>header</h1>
+
+
         <div style={{ display:"flex", justifySelf:"flex-start", alignSelf: "center" }}>
 
             <Dropdown style={{ marginLeft:"0.5rem" }}>
