@@ -1,20 +1,27 @@
+import { Link } from "react-router-dom"
+
 const hero = () =>{
 
     return(
-        <div style={{ color:"white" }}>
+        <div className="hero">
 
-            <h1 style={{ fontSize:"4rem", textAlign:"center", fontWeight:"600" }}>Mytinerary</h1>
-            
-            <hr style={{ width:"25rem",  }} />
-            <hr style={{ width:"25rem",  }} />
+        <div >
+            <img src="./traveller.svg" alt="logo" style={{ width:"4rem", marginBottom:"1.3rem" }} />
+            <h1>Mytinerary</h1>
+        </div>
         
-            <p style={{ fontSize:"2.5rem", fontWeight:"400" }}>Find your perfect trip, designed by insiders who knows and love their cities!</p>
+            <hr />
+            <hr />
+        
+            <p >Find your perfect trip, designed by insiders who knows and love their cities!</p>
 
-            <div style={{ display:"flex", justifyContent:"center" }}>
+            <div className=" d-flex justify-content-center">
 
-            <div className="circulo" style={{ display:"flex", justifyContent:"center",alignItems:"center", fontSize:"2.5rem", cursor:"pointer" }} >
-                <h6 style={{ fontSize:"2rem" }}>Start</h6>
+            <Link to="/cities">
+            <div className="circulo" >
+                <h6 >Start</h6>
             </div>
+            </Link>
             </div>
 
         </div>
