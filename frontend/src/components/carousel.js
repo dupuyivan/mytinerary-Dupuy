@@ -1,3 +1,4 @@
+import React from 'react';
 import { Carousel } from "react-bootstrap"
 
 const CarouselComp = ( ) =>{
@@ -24,19 +25,18 @@ const CarouselComp = ( ) =>{
         ]
     ]
 
-    let contador = 0
-
+    
     return (
         <Carousel fade >
             {  
               cities.map( object =>{
                 return(
-                    <Carousel.Item interval={1000} key={ contador++ } style={{ width:"100%",display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
+                    <Carousel.Item interval={1000} key={ object[0].name } style={{ width:"100%",display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
                     {
                     object.map( city =>{
-                        return <div className="imgC" key={ contador++ } style={{ backgroundImage:`url('./cities/${ city.path }.jpg')` }} >
-                            <h2 className="text-center text-white city" >{ city.name }</h2>
-                        </div>
+                    return <div className="imgC" key={ city.path } style={{ backgroundImage:`url('./cities/${ city.path }.jpg')` }} >
+                                <h2 key={ city.name } className="text-center text-white city" >{ city.name }</h2>
+                            </div>
                         })
                     }
                     </Carousel.Item> )

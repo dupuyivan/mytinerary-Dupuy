@@ -10,9 +10,6 @@ const Hero = () =>{
             <h1>Mytinerary</h1>
         </div>
         
-            <hr />
-            <hr />
-        
             <p>Find your perfect trip, designed by insiders who knows and love their cities!</p>
 
             <div className=" d-flex justify-content-center">

@@ -1,7 +1,6 @@
-import { Navbar , Nav , NavDropdown } from "react-bootstrap"
+import { Navbar , Nav  } from "react-bootstrap"
 import { Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
-
 
 const Header = ({ logo })=>{
 
@@ -31,10 +30,7 @@ const Header = ({ logo })=>{
         </div>
         }
         
-
-
-    
-                <Navbar collapseOnSelect expand="lg" variant="dark">
+                <Navbar collapseOnSelect expand="lg" variant="dark" >
                 <Navbar.Brand></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
