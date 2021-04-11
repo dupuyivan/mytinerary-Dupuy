@@ -11,7 +11,7 @@ function App() {
     <Switch>
       <Route exact path="/" component={ Home } />
       <Route exact path="/cities" component={ Cities } />
-      <Redirect  to="/" />
+      <Redirect to="/" />
     </Switch>
   </BrowserRouter>
     </>

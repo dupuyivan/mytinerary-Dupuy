@@ -11,7 +11,7 @@ const Header = ({ logo })=>{
             <Dropdown className="ml-2">
 
                 <Dropdown.Toggle variant="" id="dropdown-basic" className=" text-white" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-person-circle ml-1 " viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" style={{ width:"6.5vw", height:"6.5vh" }}  fill="currentColor" className="bi bi-person-circle ml-1" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                     </svg>
@@ -19,18 +19,20 @@ const Header = ({ logo })=>{
 
                 <Dropdown.Menu>
                     <Dropdown.Item >Sign Up</Dropdown.Item>
-                    <Dropdown.Item >Log In</Dropdown.Item>
+                    <Dropdown.Item >Login</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>
 
-        { logo && <div className="col-lg-1 ml-5">
-            <img src="./traveller.svg" alt="logo" style={{ width:"3rem", marginBottom:"1.3rem" }} />
-            <h1 className="text-white mt-2  ">Mytinerary</h1>
-        </div>
+        { logo && 
+            <div className="col-9 col-sm-6 col-lg-4 mt-2 ">
+            <img src="./traveller.svg" alt="logo" className="logo lo-cities " />
+            <h1 className="text-white mt-2 tx-cities">Mytinerary</h1>
+            </div>
         }
-        
-                <Navbar collapseOnSelect expand="lg" variant="dark" >
+
+        <div>
+        <Navbar collapseOnSelect expand="lg" variant="dark" className="menu" >
                 <Navbar.Brand></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -52,6 +54,8 @@ const Header = ({ logo })=>{
                     </Nav>
                 </Navbar.Collapse>
                 </Navbar>
+        </div>
+                
 
         </header>
     )

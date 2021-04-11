@@ -7,13 +7,23 @@ const Footer = () =>{
            
         <div className="row nada">
 
-                <div className="nav-footer col-12 col-md-4 order-1 order-md-0">
-                            <Link to="/">
-                            <h4 className="pl-5 ">Home</h4>
-                            </Link>
-                            <Link to="/cities">
-                            <h4 className="pl-5 ">Cities</h4>
-                            </Link>
+                <div className="nav-footer col-12 col-md-4 order-1 order-md-0 ">
+                        <Link to="/">
+                            <h5 className="pl-5 ">Home</h5>
+                        </Link>
+
+                        <Link to="/cities">
+                            <h5 className="pl-5 ">Cities</h5>
+                        </Link>
+
+                        <Link to="/cities">
+                            <h5 className="pl-5 ">Sign Up</h5>
+                        </Link>
+
+                        <Link to="/cities">
+                            <h5 className="pl-5 ">Login</h5>
+                        </Link>
+                        
                 </div>
                 <div className="col-12 col-md-4 " >
 

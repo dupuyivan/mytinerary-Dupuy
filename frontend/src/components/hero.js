@@ -6,8 +6,8 @@ const Hero = () =>{
         <div className="hero">
 
         <div>
-            <img src="./traveller.svg" alt="logo" style={{ width:"5rem", marginBottom:"1.3rem" }} />
-            <h1>Mytinerary</h1>
+            <img src="./traveller.svg" alt="logo" className="logo" />
+            <h1 className="text-light">Mytinerary</h1>
         </div>
         
             <p>Find your perfect trip, designed by insiders who knows and love their cities!</p>
@@ -16,7 +16,7 @@ const Hero = () =>{
 
             <Link to="/cities">
             <div className="circulo" >
-                <h6 >Start</h6>
+                <h6>Let's begin</h6>
             </div>
             </Link>
             </div>

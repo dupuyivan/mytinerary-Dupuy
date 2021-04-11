@@ -31,7 +31,7 @@ const CarouselComp = ( ) =>{
             {  
               cities.map( object =>{
                 return(
-                    <Carousel.Item interval={1000} key={ object[0].name } style={{ width:"100%",display:"flex", flexWrap:"wrap", justifyContent:"center"}}>
+                    <Carousel.Item interval={1000} key={ object[0].name } style={{ width:"100%",display:"flex", flexWrap:"wrap", justifyContent:"center",paddingBottom:"1rem"}}>
                     {
                     object.map( city =>{
                     return <div className="imgC" key={ city.path } style={{ backgroundImage:`url('./cities/${ city.path }.jpg')` }} >
