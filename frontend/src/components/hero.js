@@ -12,13 +12,16 @@ const Hero = () =>{
         
             <p>Find your perfect trip, designed by insiders who knows and love their cities!</p>
 
-            <div className=" d-flex justify-content-center">
+            <div>
 
-            <Link to="/cities">
-            <div className="circulo" >
-                <h6>Let's begin</h6>
-            </div>
-            </Link>
+                <div className=" d-flex justify-content-center">
+                    <Link to="/cities">
+                    <div className="circulo" >
+                        <h6>Let's begin</h6>
+                    </div>
+                    </Link>
+                </div>
+            
             </div>
 
         </div>

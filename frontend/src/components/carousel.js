@@ -25,7 +25,6 @@ const CarouselComp = ( ) =>{
         ]
     ]
 
-    
     return (
         <Carousel fade >
             {  
@@ -35,7 +34,7 @@ const CarouselComp = ( ) =>{
                     {
                     object.map( city =>{
                     return <div className="imgC" key={ city.path } style={{ backgroundImage:`url('./cities/${ city.path }.jpg')` }} >
-                                <h2 key={ city.name } className="text-center text-white city" >{ city.name }</h2>
+                                <h2 className="text-center text-white city" >{ city.name }</h2>
                             </div>
                         })
                     }

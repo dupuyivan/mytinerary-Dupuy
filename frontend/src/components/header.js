@@ -19,7 +19,7 @@ const Header = ({ logo })=>{
 
                 <Dropdown.Menu>
                     <Dropdown.Item >Sign Up</Dropdown.Item>
-                    <Dropdown.Item >Login</Dropdown.Item>
+                    <Dropdown.Item >Log in</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>
@@ -32,10 +32,10 @@ const Header = ({ logo })=>{
         }
 
         <div>
-        <Navbar collapseOnSelect expand="lg" variant="dark" className="menu" >
+        <Navbar expand="md" variant="dark" className="menu" >
                 <Navbar.Brand></Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Toggle />
+                <Navbar.Collapse >
                     <Nav className="mr-auto">
 
                     <Link to="/">

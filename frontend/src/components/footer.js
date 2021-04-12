@@ -16,11 +16,11 @@ const Footer = () =>{
                             <h5 className="pl-5 ">Cities</h5>
                         </Link>
 
-                        <Link to="/cities">
+                        <Link to="/">
                             <h5 className="pl-5 ">Sign Up</h5>
                         </Link>
 
-                        <Link to="/cities">
+                        <Link to="/">
                             <h5 className="pl-5 ">Login</h5>
                         </Link>
                         
