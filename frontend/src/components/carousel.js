@@ -5,12 +5,11 @@ const CarouselComp = ( ) =>{
     
     let cities =[
         [
-            { name:"Roma", path:"roma2" },
+            { name:"Rome", path:"roma2" },
             { name:"Cancun", path:"cancun" },
             { name:"Ibiza", path:"ibiza" },
             { name:"New York", path:"new-york-2" }
         ],
-
         [
             { name:"Paris", path:"paris3" },
             { name:"Tokio", path:"tokio2" },
