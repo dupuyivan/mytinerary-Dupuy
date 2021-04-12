@@ -1,9 +1,9 @@
 import React from "react"
 
-import Header from "../components/header"
-import Footer from "../components/footer"
-import Hero from "../components/hero"
-import Carousel from "../components/carousel"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import Hero from "../components/Hero"
+import Carousel from "../components/Carousel"
 
 export class Home extends React.Component {
 
@@ -13,20 +13,16 @@ export class Home extends React.Component {
                 <div className="fondo-home" style={{ backgroundImage: "url('./eiffel-tower.jpg')" }}>
                     <Header />
                     <div className="h-100 d-flex justify-content-center align-items-center">
-                            <Hero />
+                        <Hero />
                     </div>
                 </div> 
                     <div className="black ">
                         <h2 className="t-car text-white pt-3">Popular Mytineraries</h2>
-                    < Carousel /> 
-        
+                        < Carousel /> 
                     </div>
                 <Footer />
             </div>
         )
     }
-
-
-
 }
 

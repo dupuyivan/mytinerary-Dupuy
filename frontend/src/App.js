@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./app.css"
-import { Home } from "./pages/home"
+import { Home } from "./pages/Home"
+import Cities from "./pages/Cities"
 import{ BrowserRouter, Switch , Route, Redirect  } from "react-router-dom"
-import Cities from "./pages/cities"
 
 function App() {
   return (

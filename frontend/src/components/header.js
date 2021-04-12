@@ -10,7 +10,7 @@ const Header = ({ logo })=>{
 
             <Dropdown className="ml-2">
 
-                <Dropdown.Toggle variant="" id="dropdown-basic" className=" text-white" >
+                <Dropdown.Toggle variant="" className=" text-white" >
                 <svg xmlns="http://www.w3.org/2000/svg" style={{ width:"6.5vw", height:"6.5vh" }}  fill="currentColor" className="bi bi-person-circle ml-1" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -36,7 +36,7 @@ const Header = ({ logo })=>{
                 <Navbar.Brand></Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse >
-                    <Nav className="mr-auto">
+                    <Nav className="mr-auto nav">
 
                     <Link to="/">
                         <h3 ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">
@@ -55,8 +55,6 @@ const Header = ({ logo })=>{
                 </Navbar.Collapse>
                 </Navbar>
         </div>
-                
-
         </header>
     )
 }
