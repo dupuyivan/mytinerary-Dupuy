@@ -12,7 +12,7 @@ body{
 }
 
 .main{
-    flex-grow: 10;
+    flex-grow: 1;
 }
 
 .main * {
@@ -20,7 +20,6 @@ body{
 }
 
 header{
-    padding-top: 0.2rem;
     display: flex;
     justify-content: space-between;
 }
@@ -100,10 +99,6 @@ footer * {
     text-align: center;
     font-weight: 600;
 }
-.hero > hr{
-    width: 25rem;
-}
-
 .hero p {
     font-size: 2rem;
     font-weight: 600;
@@ -131,13 +126,6 @@ footer * {
     font-weight: 600;
 }
 
-h2{
-    font-weight: 400;
-    font-weight: 400;
-	color: #483949;
-	line-height: 1.25em;
-    margin-bottom: 1rem;
-}
 .fondo-home{
    height: 100vh;
    width: 100%;
@@ -185,6 +173,31 @@ a{
     position: absolute;
     right: -2rem;
     top: -1.5rem;
+}
+
+.C-igms{
+    width: 20rem;
+    height: 20rem;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fondo-cities{
+    height: 10rem;
+    background-position-y: center;
+    background-position-X:center; 
+    background-repeat:no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fondo-cities h2{
+    font-size: 4rem;
+    font-weight: 600;
 }
 
 @media (max-width: 412px) {

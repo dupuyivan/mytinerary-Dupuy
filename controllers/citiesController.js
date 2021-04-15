@@ -1,3 +1,4 @@
+const City = require("../models/Citi")
 
 let cities=[
     { id:1, country:"Germany", city:"Berlin" ,img:"https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"},
@@ -9,54 +10,67 @@ let cities=[
     { id:7, country:"France", city:"Paris" ,img:"https://images.unsplash.com/photo-1508050919630-b135583b29ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80"},
 ]
 
-const getCities = (req, res) =>{
 
-    res.json({ cities })
+const getCities = async (req, res) =>{
+
+    const result = await City.find()
+
+    res.json({success:true, result })
 }
 
-const GetCity = (req,res)=>{
+const getCity = async (req,res)=>{
 
     const { id } = req.params
 
-    const city = cities.find(element => element.id == id )
+    const result = await City.find({ _id: id })
 
-    res.json({ city })
+    res.json({ result })
 }
 
-const postCities = (req,res)=>{
+const postCities = async (req,res)=>{
 
     const { country, city , img } = req.body
-    cities.push( { id:cities[ cities.length -1 ].id +1, country, city , img } )
-    res.json({ cities })
-}
 
-const delCities = (req,res)=>{
-
-    const { id } = req.params
-    let elemento = cities.find( element => element.id == id)
-    cities = cities.filter( element => element.id != elemento.id  )
-    res.json({ cities })
-}
-
-const putCities = (req,res)=>{
-
-    const { id } = req.params
-    const { country, city , img } = req.body
-    cities = cities.map( element =>{
-        if( element.id == id ){
-            element.country = country
-            element.city = city
-            element.img = img
-        }
-        return element
+    const newcity = new City({
+        country,
+        city,
+        img
     })
-    res.json({ cities })
+    await newcity.save()
+
+    const result = await City.find()
+
+    res.json({success:true, result })
+}
+
+const delCities = async (req,res)=>{
+
+    const { id } = req.params
+    
+    const a = await City.findOneAndDelete({ _id:id })
+    
+    const result = await City.find()
+
+    res.json({ result })
+}
+
+const putCities = async (req,res)=>{
+    const { id } = req.params
+
+    const { country, city , img } = req.body
+
+    await City.findByIdAndUpdate( { _id:id },{ country, city , img  } )
+
+    const result = await City.find()
+
+    res.json({ result })
+
 }
 
 
 module.exports ={
     getCities,
-    GetCity,
+    getCity,
     postCities,
     delCities,
     putCities,
