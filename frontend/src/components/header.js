@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const Header = ({ logo })=>{
 
     return(
-        <header>
+        <header className={ logo && "black" }>
         <div>
 
             <Dropdown className="ml-2">
