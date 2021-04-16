@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-mongoose.connect("mongodb+srv://agus_mytinerary:hola123456789hola123456789@cluster0.m26o7.mongodb.net/mytinerary?retryWrites=true&w=majority",{
+mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

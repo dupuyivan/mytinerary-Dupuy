@@ -1,7 +1,9 @@
 const express = require("express")
 const cors = require("cors")
-require("./database/dataBase")
 const app = express()
+
+require("dotenv").config()
+require("./database/dataBase")
 
 app.use( express.json() )
 
