@@ -14,19 +14,26 @@ const  [data, dataF ] = useState([])
     },[])
 
     return <>
-            <div style={{ height:"20rem",width:"100%", display:"flex",alignItems:"center",justifyContent:"center",backgroundPositionX:"center", backgroundImage:`url('${ data.img }')` }} >
-              <h1 style={{color:"white",fontSize:"4rem", fontFamily:"Josefin Sans", fontWeight:"600" }}>{ data.city }</h1>
-            </div>
-            
-            
-            <div>
-                
-            <h3>{ data.city }</h3>
+              <div className="fondo-city" style={{ backgroundImage:`url('${ data.img }')` }} >
 
+                <div>
+                  <button className="rounded" >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                      </svg>
+                  </button>
+                </div>
+                
+                <div className="d-flex align-items-center justify-content-center" >
+                  <h1 className="t-city">{ data.city }</h1>
+                </div>
+               
+            </div>
+
+            <div>
+              <h3>Under Construction</h3>
             </div>
     </>
-
-
 }
 
 export default City
