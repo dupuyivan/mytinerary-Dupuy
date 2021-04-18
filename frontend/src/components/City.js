@@ -1,5 +1,7 @@
 import React,{ useEffect , useState} from "react"
 import { NavLink } from "react-router-dom"
+import Footer from "./Footer"
+import Header from "./Header"
 
 const City = (props) =>{
 
@@ -15,6 +17,7 @@ const City = (props) =>{
   },[id])
 
   return<>
+          <Header />
           <div className="fondo-city" style={{ backgroundImage:`url('${ data.img }')` }} >
               <div>
                   <NavLink to="/cities">
@@ -26,12 +29,13 @@ const City = (props) =>{
               </div>     
               <div className="d-flex align-items-center justify-content-center" >
                 <h1 className="t-city">{ data.city }</h1>
-              </div> 
+              </div>  
           </div>
 
           <div >
               <h3>Under Construction</h3>
           </div>
+          <Footer />
       </>
 }
 
