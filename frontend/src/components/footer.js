@@ -8,19 +8,19 @@ const Footer = () =>{
             <div className="row nada">
                     <div className="nav-footer col-12 col-md-4 order-1 order-md-0">
                             <Link to="/">
-                                <h5 className="pl-5 ">Home</h5>
+                                <h5>Home</h5>
                             </Link>
 
                             <Link to="/cities">
-                                <h5 className="pl-5 ">Cities</h5>
+                                <h5>Cities</h5>
                             </Link>
 
                             <Link to="/">
-                                <h5 className="pl-5 ">Sign Up</h5>
+                                <h5>Sign Up</h5>
                             </Link>
 
                             <Link to="/">
-                                <h5 className="pl-5 ">Login</h5>
+                                <h5>Login</h5>
                             </Link>
                     </div>
                     
@@ -56,9 +56,10 @@ const Footer = () =>{
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-4 mt-3">
-
+                    <div className="col-12 col-md-4 mt-3 ">
+                        
                         <h3 className="text-center">Contact us</h3>
+                    
                         <div className="d-flex justify-content-center pl-4 ml-5">
                             <div className="d-flex mt-4">
                                 <div>

@@ -11,7 +11,7 @@ export class Home extends React.Component {
         return(
             <div className="main">
                 <div className="fondo-home" style={{ backgroundImage: "url('./eiffel-tower.jpg')" }}>
-                    <Header />
+                    <Header logo={ true }/>
                     <div className="h-100 d-flex justify-content-center align-items-center">
                         <Hero />
                     </div>

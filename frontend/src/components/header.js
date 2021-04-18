@@ -3,15 +3,14 @@ import { Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const Header = ({ logo })=>{
-    
     return(
-        <header className={ logo && "black" }>
+        <header className={ !logo ?"black": "" }>
             <div>
                 <Dropdown className="ml-2">
                     <Dropdown.Toggle variant="" className=" text-white" >
                         <svg xmlns="http://www.w3.org/2000/svg" style={{ width:"6.5vw", height:"6.5vh" }}  fill="currentColor" className="bi bi-person-circle ml-1" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg>
                     </Dropdown.Toggle>
 
@@ -22,9 +21,9 @@ const Header = ({ logo })=>{
                 </Dropdown>
             </div>
             { 
-                logo && 
-                <div className="col-9 col-sm-6 col-lg-4 mt-2 ">
-                    <img src="./traveller.svg" alt="logo" className="logo lo-cities " />
+                !logo && 
+                <div className="col-9 col-sm-6 col-lg-4 mt-1 ">
+                    <img src={ process.cwd() + "traveller.svg" } alt="logo" className="logo lo-cities " />
                     <h1 className="text-white mt-2 tx-cities">Mytinerary</h1>
                 </div>
             }

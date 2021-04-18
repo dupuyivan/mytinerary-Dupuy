@@ -22,6 +22,7 @@ body *{
 header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 header > div{
@@ -56,6 +57,10 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.nav-footer a{
+    margin-left: 4rem;
 }
 
 .f-principal {
@@ -183,6 +188,8 @@ a{
 }
 .C-igms:hover {
     transform: scale(1.1); 
+    /* position: relative;
+    right: 0.99rem; */
 }
 
 .fondo-cities{
@@ -203,14 +210,13 @@ a{
 }
 
 .fondo-city{ 
-    width: 85%;
-    margin: 0 10%;
-    height: 28%;
+    width: 100%;
+    height: 15rem;
     display: flex;
     flex-direction: column;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 70% ;
+    background-position: 50% 70%; 
 }
 
 .t-city{    
@@ -218,6 +224,22 @@ a{
     font-size: 4.5rem;
     font-family: "Josefin Sans";
 }
+
+@media (max-width: 460px) {
+
+    .lo-cities{
+        width: 2.6rem;
+        margin-bottom: 1.3rem;
+    }
+    .tx-cities{
+        font-size: 1.6rem;
+    }
+    .nav-footer a{
+        text-align: center;
+        margin-left: 4rem;
+    }
+}
+
 
 @media (max-width: 412px) {
     .hero p {
@@ -232,12 +254,7 @@ a{
         width: 3.5rem;
         margin-bottom: 1.3rem;
     }
-    .nav-footer{
-        text-align: center;
-    }
-    nav{
-        background-color: black;
-    }
+    
     .C-igms{
         width: 47%;
         height: 10rem;
@@ -247,14 +264,4 @@ a{
     }
 }
 
-@media (max-width: 460px) {
 
-    .lo-cities{
-        width: 2.6rem;
-        margin-bottom: 1.3rem;
-    }
-    .tx-cities{
-        font-size: 1.6rem;
-    }
-
-}
