@@ -30,12 +30,12 @@ const City = (props) =>{
                         </NavLink>
                     </div>     
                     <div className="d-flex align-items-center justify-content-center" >
-                      <h1 className="t-city">{ data.city }</h1>
+                      <h1 className="t-city city rounded text-white p-1">{ data.city }</h1>
                     </div>  
                 </div>
 
                 <div className="text-center">
-                  <h3>Under Construction</h3>
+                  <h3>Under Construction!!</h3>
                 </div>
               </div>
           <Footer />

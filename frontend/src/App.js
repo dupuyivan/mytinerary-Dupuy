@@ -6,7 +6,6 @@ import { Home } from "./pages/Home"
 import Cities from "./pages/Cities"
 import City from "./components/City"
 
-
 function App() {
   return (
     <>

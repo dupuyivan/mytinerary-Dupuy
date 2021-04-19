@@ -2,7 +2,12 @@ import { Navbar , Nav  } from "react-bootstrap"
 import { Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
-const Header = ({ logo })=>{
+const Header = ()=>{
+
+    let logo = false
+
+    if (! window.location.href.includes("/ci") ) { logo = true }
+
     return(
         <header className={ !logo ?"black": "" }>
             <div>
