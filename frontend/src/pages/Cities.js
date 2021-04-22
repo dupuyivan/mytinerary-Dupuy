@@ -2,47 +2,31 @@ import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { NavLink } from "react-router-dom"
+import { connect } from "react-redux"
+import citiesAction from "../redux/actions/citiesAction"
 
-export default class Cities extends React.Component{
+class Cities extends React.Component{
 
-   state = { data:[], resultado:[], visible:false }
+   state = { visible:false }
 
-   componentDidMount(){
-    fetch("http://localhost:4000/api/cities")
-    .then( data => data.json() )
-    .then( data => this.setState({ data: data.result }) )
-    .catch( error => console.log(error) )
-    }
-
-    busqueda = (e)=>{
-        let encontrado = []
-    
-        if (e.target.value === "") { this.setState({ resultado:[], visible:false }) }
-        let item = e.target.value.split(" ").join("").toLowerCase()
-        this.state.data.map( element =>{
-            let city = element.city.split(" ").join("").toLowerCase()
-            if (city.indexOf( item ) === 0) { encontrado.push( element ) }
-            return []
-        })
-        if ( encontrado.length > 0 ) { this.setState({ resultado:encontrado,visible:false }) }
-        else{ this.setState({ visible:true }) }
-    }
+   componentDidMount(){ this.props.fetchear() }
 
     render(){
         let array
-        if ( this.state.resultado.length > 0 || this.state.visible ) { array = this.state.resultado }
-        else{ array = this.state.data }
-
-    return(<>
+ 
+    this.props.resultado.length > 0 || this.state.visible ? array = this.props.resultado : array = this.props.cities
+        
+    return <>
             <Header />
-                <div className="black main" >
+                <div className="black main"  >
                         <div className="fondo-cities" >
                             <h2>Cities</h2>
-                            <input type="text" style={{ width:"57%" }} className="form-control" onChange={ this.busqueda } placeholder="Search a city" />
+                            <input type="text" style={{ width:"57%" }} className="form-control" onChange={ this.props.buscar } placeholder="Search a city" />
                         </div>
                     
                         <div className="d-flex justify-content-center flex-wrap mb-2 mt-2" >
-                            { this.state.data.length === 0 &&
+
+                            { this.props.cities.length === 0 &&
                                 <div className="d-flex justify-content-center m-2">
                                     <div className="spinner-border text-light" role="status"></div>
                                 </div>
@@ -68,25 +52,21 @@ export default class Cities extends React.Component{
                         </div>
                 </div>
             <Footer />
-         </>)
+         </>
     }
 }
 
+const mapStateToProps =( state )=>{
+    return{
+        cities: state.MasterReducer.cities,
+        resultado: state.MasterReducer.resultado
+    }
+}
 
-/* if ( e.target.value === "" ){ this.setState({ resultado:[],visible:false });return } 
-        let item = e.target.value.split(" ").join("").toLowerCase()
-        this.state.data.map( city =>{
-            let ciudad = city.city.split(" ").join("").toLowerCase()
-            if ( item.length === 1 ) {
-                ciudad[0] === item[0] &&  encontrado.push( city ) 
-            }
-            else if( item.length === 2 ){
-                ciudad[0] === item[0] && ciudad[1] === item[1] && encontrado.push( city ) 
-            }
-            else if( item.length > 2 ) {
-                ciudad[0] === item[0] && ciudad[1] === item[1] && ciudad.includes( item ) && encontrado.push( city )
-            }
-            return []
-        }) 
-        if ( encontrado.length === 0 ) { this.setState({ visible:true, data:this.state.data }) }
-        else{ this.setState({ resultado: encontrado, visible:false }) } */
+const mapDispatchToProps={
+    fetchear: citiesAction.fetchear,
+    buscar: citiesAction.buscador
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)( Cities )

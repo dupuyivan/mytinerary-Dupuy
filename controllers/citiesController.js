@@ -52,7 +52,7 @@ const putCities = async (req,res)=>{
         res.json({ success:false, error:"opps algo salio mal" })
     }
 }
-
+    
 module.exports ={
     getCities,
     getCity,

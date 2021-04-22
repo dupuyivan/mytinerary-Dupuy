@@ -4,7 +4,7 @@ import{ BrowserRouter, Switch , Route, Redirect  } from "react-router-dom"
 
 import { Home } from "./pages/Home"
 import Cities from "./pages/Cities"
-import City from "./components/City"
+import City from "./pages/City"
 
 function App() {
   return (
