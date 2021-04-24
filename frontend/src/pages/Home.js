@@ -11,11 +11,11 @@ export class Home extends React.Component {
         return(<>
                 <div className="fondo-home" style={{ backgroundImage: "url('./eiffel-tower.jpg')" }}>
                     <Header />
-                    <div className="h-100 d-flex justify-content-center align-items-center">
+                    <div className="d-flex justify-content-center align-items-center">
                         <Hero />
                     </div>
                 </div> 
-                <div className="black ">
+                <div className="black">
                     <h2 className="t-car text-white pt-3">Popular Mytineraries</h2>
                     <Carousel /> 
                 </div>

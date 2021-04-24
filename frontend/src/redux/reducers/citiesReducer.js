@@ -1,37 +1,36 @@
-
 const initialState = {
     cities: [],
     resultado:[],
-    city:{}
+    itineraries:[]
 }
 
 const citiesReducer = ( state = initialState, action )=>{
-
+    
     switch ( action.type ) {
         case "FETCH_CITIES":
             return{
                 ...state,
-                cities: action.payload.result
+                cities: action.payload,
+                resultado: action.payload
             }
-            break;
+            /* break; */
 
         case "BUSCAR":
             return{
                 ...state,
-                resultado: state.cities.filter(element =>{
+                resultado: state.cities.filter( element =>{
                     let city = element.city.split(" ").join("").toLowerCase()
-                   if( city.indexOf( action.payload ) === 0 ){ return element }hjh
+                    return city.indexOf( action.payload ) === 0
                 })
             }
-            break;
+            /* break; */
 
-            case "BUSCAR_CITY":
+        case "FETCH_ITINERARIES":
             return{
-                ...state,   
-                city: state.cities.find( element => element._id === action.payload )
+                ...state,
+                itineraries: action.payload
             }
-            break;
-
+           /*  break; */
         default: return state
     }
 

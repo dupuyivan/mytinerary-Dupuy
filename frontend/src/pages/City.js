@@ -2,18 +2,26 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
-import citiesAction from "../redux/actions/citiesAction"
+import Itineraries from "../components/Itineraries"
 import { useEffect } from "react"
+import citiesAction from "../redux/actions/citiesAction"
+import { useState } from "react"
 
+const City = ({ cities, fetchItineraries, itineraries, match:{ params:{ id } }  }) =>{
 
-const City = ({ city,buscarCity, match:{ params:{ id } } }) =>{
+  const [ city, setcity ] = useState({})
 
-  buscarCity( id )
+  useEffect(()=>{
+    window.scrollTo(0,0)
+    setcity( cities.find( element => element._id === id ) )
+    fetchItineraries( id )
+  },[id])
 
   return<>
           <Header />
-              <div className="main">
-                <div className="fondo-city" style={{ backgroundImage:`url('${ city.img }')` }} >
+              <div className="main black">
+                
+                  <div className="fondo-city" style={{ backgroundImage:`url('${ city.img }')` }} >
                     <div>
                         <NavLink to="/cities">
                           <button type="button" className="btn btn-outline-danger m-2">
@@ -26,11 +34,14 @@ const City = ({ city,buscarCity, match:{ params:{ id } } }) =>{
                     <div className="d-flex align-items-center justify-content-center" >
                       <h1 className="t-city rounded text-white p-1">{ city.city }</h1>
                     </div>  
-                </div>
-
-                <div className="text-center">
-                  <h4>Citycomponent</h4>
-                </div>
+                  </div>
+                  <div className="d-flex flex-column align-items-center">
+                  { 
+                    itineraries.length > 0 
+                    ? itineraries.map( object => <Itineraries data={ object } /> )
+                    : <h1>No hay Itinerarios</h1>
+                  }
+                  </div> 
               </div>
           <Footer />
       </>
@@ -38,13 +49,13 @@ const City = ({ city,buscarCity, match:{ params:{ id } } }) =>{
 
 const mapStateToProps = state =>{
   return{
-    city: state.MasterReducer.city
+    cities: state.MasterReducer.cities,
+    itineraries: state.MasterReducer.itineraries
   }
 }
 
-const mapDispatchToProps ={
-   buscarCity: citiesAction.buscarCity
+const mapDispatchToProps = {
+  fetchItineraries :citiesAction.fetchItineraries
 }
-
 
 export default connect(mapStateToProps,mapDispatchToProps)( City ) 
