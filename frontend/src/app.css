@@ -192,6 +192,7 @@ a{
     background-position-y: center;
     transition: transform .2s;
 }
+
 .C-igms:hover {
     transform: scale(1.1); 
     /* position: relative;
@@ -238,6 +239,7 @@ a{
 .t-It{
     font-family: "Josefin Sans";
     margin-top: 1vh;
+    font-size: 2.5rem;
 }
 
 .itinerary{
@@ -248,11 +250,16 @@ a{
     flex-flow: column ;
     text-align: center;
 }
-/* .itinerary h5 {
-    font-size: 2rem;
-} */
 
-@media (max-width: 450px) {
+.img-autor{
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+}
+
+@media (max-width: 530px) {
 
     body *{
         font-size: 1rem;
@@ -268,11 +275,21 @@ a{
         text-align: center;
         margin-left: 0;
     }
+    .C-igms{
+        width: 47%;
+        height: 10rem;
+    }
     .contact{
         padding-left: 0;
     }
     .t-city{
         font-size: 2rem;
+    }
+    .t-It{
+        font-size: 1.5rem;
+    }
+    .itinerary{
+        width: 80%;
     }
 }
 
@@ -289,11 +306,6 @@ a{
     .logo{
         width: 3.5rem;
         margin-bottom: 1.3rem;
-    }
-    
-    .C-igms{
-        width: 47%;
-        height: 10rem;
     }
     .C-igms h2{
         font-size: 1rem;

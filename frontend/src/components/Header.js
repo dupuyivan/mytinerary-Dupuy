@@ -19,9 +19,9 @@ const Header = ()=>{
                         </svg>
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                        <Dropdown.Item >Sign Up</Dropdown.Item>
-                        <Dropdown.Item >Log in</Dropdown.Item>
+                    <Dropdown.Menu >
+                        <Dropdown.Item className="text-dark">Sign Up</Dropdown.Item>
+                        <Dropdown.Item className="text-dark">Log in</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>

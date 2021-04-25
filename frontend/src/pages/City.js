@@ -3,24 +3,27 @@ import Header from "../components/Header"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import Itineraries from "../components/Itineraries"
-import { useEffect } from "react"
-import citiesAction from "../redux/actions/citiesAction"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import itinerariesAction from "../redux/actions/itinerariesAction"
 
-const City = ({ cities, fetchItineraries, itineraries, match:{ params:{ id } }  }) =>{
+
+const City = ({ cities, fetchItineraries , itineraries, history , match:{ params:{ id } } }) =>{
+
+  /* const  = props */
 
   const [ city, setcity ] = useState({})
 
   useEffect(()=>{
     window.scrollTo(0,0)
-    setcity( cities.find( element => element._id === id ) )
     fetchItineraries( id )
-  },[id])
+    setcity( cities.find( element => element._id === id ) )
+  },[])
+
+  if(!cities.length){ history.push("/cities") }
 
   return<>
           <Header />
               <div className="main black">
-                
                   <div className="fondo-city" style={{ backgroundImage:`url('${ city.img }')` }} >
                     <div>
                         <NavLink to="/cities">
@@ -37,25 +40,27 @@ const City = ({ cities, fetchItineraries, itineraries, match:{ params:{ id } }  
                   </div>
                   <div className="d-flex flex-column align-items-center">
                   { 
-                    itineraries.length > 0 
-                    ? itineraries.map( object => <Itineraries data={ object } /> )
-                    : <h1>No hay Itinerarios</h1>
+                    itineraries.length 
+                    ? itineraries.map( (object,i) => <Itineraries key={ i } data={ object } /> )
+                    : <div className="alert alert-warning mt-4" role="alert">
+                        Sorry, we do not have itineraries for this city.Keep looking
+                      </div>
                   }
                   </div> 
               </div>
-          <Footer />
+          <Footer />  
       </>
 }
 
 const mapStateToProps = state =>{
   return{
-    cities: state.MasterReducer.cities,
-    itineraries: state.MasterReducer.itineraries
+    cities: state.citiesReducer.cities,
+    itineraries: state.itinerariesReducer.itineraries
   }
 }
 
 const mapDispatchToProps = {
-  fetchItineraries :citiesAction.fetchItineraries
+  fetchItineraries :itinerariesAction.fetchItineraries
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)( City ) 

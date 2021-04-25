@@ -1,7 +1,6 @@
 const initialState = {
     cities: [],
-    resultado:[],
-    itineraries:[]
+    resultado:[]
 }
 
 const citiesReducer = ( state = initialState, action )=>{
@@ -24,13 +23,6 @@ const citiesReducer = ( state = initialState, action )=>{
                 })
             }
             /* break; */
-
-        case "FETCH_ITINERARIES":
-            return{
-                ...state,
-                itineraries: action.payload
-            }
-           /*  break; */
         default: return state
     }
 
