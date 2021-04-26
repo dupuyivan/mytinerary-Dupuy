@@ -5,7 +5,7 @@ const ItinerarySchema = new mongoose.Schema({
     author: { type:{ name:String, last_name:String, pic:String }, required:true },
     price : { type:Number, required:true },
     duration:{ type:Number, required:true },
-    likes:{ type:[ String ], default:[] },
+    likes:{ type:[ String ] },
     hashstags: { type:[ String ] },
     comments : { type:[{ user_id: { type: mongoose.Types.ObjectId, ref:"User" }, comment: { type:String } }] },
     city_id: { type:mongoose.Types.ObjectId , ref:"City" }

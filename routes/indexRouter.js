@@ -1,6 +1,7 @@
 const { Router } = require("express")
 const router = Router()
 const validador = require("../config/validador")
+const itineraryValidator = require("../config/itineraryValidator")
 
 const { getCities, getCity , postCities, delCities, putCities } = require("../controllers/citiesController")
 
@@ -19,7 +20,7 @@ const { getItineraries, getById, getByCity, postItinerary, deleteItinerary, putI
 
 router.route("/itineraries")
 .get( getItineraries )
-.post( postItinerary )
+.post(itineraryValidator, postItinerary )
 
 router.route("/itineraries/:id")
 .get( getById )

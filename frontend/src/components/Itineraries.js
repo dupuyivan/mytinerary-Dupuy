@@ -1,7 +1,10 @@
 import { Accordion, Card,  Button} from "react-bootstrap"
 import Rating from "react-rating"
+import { useState } from "react";
 
 const Itineraries = ({ data })=>{
+
+    const [visible,setVisible]= useState(false) 
 
     if(!data){ return <h1>No hay data</h1>}
 
@@ -23,7 +26,7 @@ return<div className="itinerary rounded m-2 bg-dark text-white">
                 </div> 
                 <div className="d-flex justify-content-center">
                     <h5>Duration: </h5> 
-                    <Rating readonly initialRating={ data.price }
+                    <Rating readonly initialRating={ data.duration }
                     emptySymbol={ <img style={{ width:"1.2rem" }} src="/assets/clockEmpty.svg" className="icon ml-1" alt="icon" /> } 
                     fullSymbol={<img style={{ width:"1.2rem" }} src="/assets/clock.svg" className="icon ml-1" alt="icon" />}
                     />
@@ -37,22 +40,20 @@ return<div className="itinerary rounded m-2 bg-dark text-white">
                 { data.hashstags.map( element => <h6 className="m-2 text-info" key={ element }>#{ element }</h6> ) }
             </div>
             
-            <Accordion defaultActiveKey="0" className="text-dark">
+            <Accordion defaultActiveKey="0" className="text-dark" >
                 <Card>
                     <Card.Header>
-                    <Accordion.Toggle as={Button} variant="dark" eventKey="1">
-                        View more
+                    <Accordion.Toggle as={Button} onClick={ ()=> setVisible(!visible) } variant="dark" eventKey="1" >
+                        { visible ? "View less": "View more" }
                     </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="1">
-                    <Card.Body>
-                        <div className="d-flex justify-content-center align-items-center">
-                            <h2>Under construction</h2>
-                            <img src="/assets/underConstruction.svg" style={{ width:"4rem" }} alt="icon"  />
-                        </div>
-
-                
-                    </Card.Body>
+                        <Card.Body>
+                            <div className="d-flex justify-content-center align-items-center">
+                                <h2>Under construction</h2>
+                                <img src="/assets/underConstruction.svg" style={{ width:"4rem" }} alt="icon"  />
+                            </div>
+                        </Card.Body>
                     </Accordion.Collapse>
                 </Card>
             </Accordion>
