@@ -12,7 +12,6 @@ const getItineraries =async(req,res)=>{
 
 const getById =async(req,res)=>{
     const { id } = req.params
-
         try {
             const result = await findById( id )
             res.json({ success:true, result })

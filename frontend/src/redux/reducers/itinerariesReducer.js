@@ -10,10 +10,8 @@ const itinerariesReducer = ( state = initialState, action )=>{
                 ...state,
                 itineraries: action.payload
             }
-            break;
-    
+
         default: return state
-            break;
     }
 }
 

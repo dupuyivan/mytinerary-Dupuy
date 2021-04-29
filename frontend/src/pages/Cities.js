@@ -27,7 +27,7 @@ class Cities extends React.Component{
                                 </div>
                             }
                             {
-                              this.props.cities.length && !this.props.resultado.length
+                              this.props.cities.length && !this.props.citiesFiltered.length
                                 ? <div className="alert alert-danger mt-4" role="alert">
                                     oops!! it seems there are no results 
                                         <span>
@@ -37,12 +37,12 @@ class Cities extends React.Component{
                                             </svg>
                                         </span>
                                     </div>
-                                : this.props.resultado.map( element =>{
+                                : this.props.citiesFiltered.map( element =>{
                                     return<div key={ element.city } className="C-igms rounded" style={{ backgroundImage:`url('${ element.img }')` }} >
                                             <NavLink to={ "/city/"+ element._id }  >
                                                 <h2 className="city rounded p-1">{ element.city }</h2>
                                             </NavLink>
-                                           </div>    
+                                          </div>    
                                 })
                             }
                         </div>
@@ -55,7 +55,7 @@ class Cities extends React.Component{
 const mapStateToProps =( state )=>{
     return{
         cities: state.citiesReducer.cities,
-        resultado: state.citiesReducer.resultado
+        citiesFiltered: state.citiesReducer.citiesFiltered
     }
 }
 

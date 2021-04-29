@@ -30,6 +30,12 @@ router.route("/itineraries/:id")
 router.route("/itinerarybycity/:id")
 .get( getByCity )
 
+const { SignUp, SignIn } = require("../controllers/authController")
 
+router.route("/signup")
+.post( SignUp )
+
+router.route("/signin")
+.post( SignIn )
 
 module.exports = router 

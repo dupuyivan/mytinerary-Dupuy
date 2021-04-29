@@ -8,7 +8,7 @@ const Itineraries = ({ data })=>{
 
     if(!data){ return <h1>No hay data</h1>}
 
-return<div className="itinerary rounded m-2 bg-dark text-white">
+return<div className="itinerary rounded m-2 text-white">
 
             <h2 className="t-It">{ data.title }</h2>
             <div className="d-flex flex-column flex-wrap justify-content-center align-items-center mb-2">
@@ -18,7 +18,7 @@ return<div className="itinerary rounded m-2 bg-dark text-white">
 
             <div className="d-flex flex-wrap justify-content-around mt-2" >
                 <div className="d-flex justify-content-center align-items-center">
-                <h5>Price: </h5> 
+                    <h5>Price: </h5> 
                     <Rating readonly initialRating={ data.price }
                     emptySymbol={ <img style={{ width:"1.5rem" }} src="/assets/moneyEmpty.svg"  className="icon ml-1"  alt="icon" /> } 
                     fullSymbol={<img style={{ width:"1.5rem" }} src="/assets/money.svg"  className="icon ml-1" alt="icon" />}

@@ -1,6 +1,6 @@
 const initialState = {
     cities: [],
-    resultado:[]
+    citiesFiltered:[]
 }
 
 const citiesReducer = ( state = initialState, action )=>{
@@ -10,22 +10,20 @@ const citiesReducer = ( state = initialState, action )=>{
             return{
                 ...state,
                 cities: action.payload,
-                resultado: action.payload
+                citiesFiltered: action.payload
             }
-            /* break; */
 
         case "BUSCAR":
             return{
                 ...state,
-                resultado: state.cities.filter( element =>{
+                citiesFiltered: state.cities.filter( element =>{
                     let city = element.city.split(" ").join("").toLowerCase()
                     return city.indexOf( action.payload ) === 0
                 })
             }
-            /* break; */
+
         default: return state
     }
-
 
 }
 

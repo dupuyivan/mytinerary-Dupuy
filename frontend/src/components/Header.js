@@ -1,33 +1,35 @@
 import { Navbar , Nav  } from "react-bootstrap"
 import { Dropdown } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link,NavLink } from "react-router-dom"
+import { connect } from "react-redux"
+import authAction from "../redux/actions/authAction"
 
-const Header = ()=>{
-
-    let logo = false
-
-    if (! window.location.href.includes("/ci") ) { logo = true }
-
-    return(
-        <header className={ !logo ?"black": "" }>
+const Header = ({ logo = true ,userLogued ,unlogUser})=>{
+    
+    return <header className={ logo ?"black": "" }>
             <div>
-                <Dropdown className="ml-2">
-                    <Dropdown.Toggle variant="" className=" text-white" >
-                        <svg xmlns="http://www.w3.org/2000/svg" style={{ width:"6.5vw", height:"6.5vh" }}  fill="currentColor" className="bi bi-person-circle ml-1" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                        </svg>
+                <Dropdown >
+                    <Dropdown.Toggle variant="" className="text-white d-flex align-items-center" >
+                    { userLogued.picture 
+                        ? <div className="picture-user" style={{ backgroundImage:`url('${ userLogued.picture }')` }} ></div>
+                        : <div className="picture-user bg-white" style={{ backgroundImage:`url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTlBWrqkcAQADicgAlj-cH4f3sRrIzHcee7w&usqp=CAU')` }} ></div>
+                        }
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu >
-                        <Dropdown.Item className="text-dark">Sign Up</Dropdown.Item>
-                        <Dropdown.Item className="text-dark">Log in</Dropdown.Item>
+                    <Dropdown.Menu className="d-flex flex-column ">
+                        { userLogued.token 
+                        ? <h6 style={{ cursor:"pointer" }} onClick={ unlogUser } >Log out</h6>
+                        : <>
+                            <NavLink to="/signup" className="text-dark text-center"><h6>Sign Up</h6></NavLink>
+                            <NavLink to="/login" className="text-dark pr-2 text-center"><h6>Log in</h6></NavLink> 
+                          </>
+                        }
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
             { 
-                !logo && 
-                <div className="col-9 col-sm-6 col-lg-4 mt-1 ">
+                logo && 
+                <div>
                     <img src={ process.cwd() + "traveller.svg" } alt="logo" className="logo lo-cities " />
                     <h1 className="text-white mt-2 tx-cities">Mytinerary</h1>
                 </div>
@@ -57,7 +59,17 @@ const Header = ()=>{
                 </Navbar>
             </div>
         </header>
-    )
 }
 
-export default Header
+const mapStateToProps = state =>{
+    return{
+        userLogued: state.authReducer.userLogued
+    }
+}
+
+const mapDispatchToProps={
+    userLoguedFunction: authAction.userLogued,
+    unlogUser: authAction.unlogUser
+}
+
+export default  connect(mapStateToProps,mapDispatchToProps) (Header)

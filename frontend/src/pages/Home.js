@@ -10,10 +10,8 @@ export class Home extends React.Component {
     render(){
         return(<>
                 <div className="fondo-home" style={{ backgroundImage: "url('./eiffel-tower.jpg')" }}>
-                    <Header />
-                    <div className="d-flex justify-content-center align-items-center">
-                        <Hero />
-                    </div>
+                    <Header logo={ false } />
+                    <Hero />
                 </div> 
                 <div className="black">
                     <h2 className="t-car text-white pt-3">Popular Mytineraries</h2>

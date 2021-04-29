@@ -32,6 +32,10 @@ header > div{
     align-self: center;
 }
 
+header div:nth-child(2){
+    margin-right: 10%;
+}
+
 .logo{
     width: 3.5rem;
 }
@@ -107,7 +111,7 @@ footer{
 }
 .hero p {
     font-size: 2rem;
-    background-color: rgba(0,0,0,.540);
+    /* background-color: rgba(0,0,0,.540); */
     border-radius: 1rem;
     text-align: center;
     padding: 0.4rem;
@@ -221,6 +225,7 @@ a{
     height: 15rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 70%; 
@@ -244,8 +249,6 @@ a{
 
 .itinerary{
     width: 55%;
-    background-color: whitesmoke;
-    color: black;
     display: flex;
     flex-flow: column ;
     text-align: center;
@@ -259,21 +262,62 @@ a{
     border-radius: 50%;
 }
 
+.form-auth{
+    background-image: url("https://images.unsplash.com/photo-1594495894542-a46cc73e081a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80");
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    min-height: 90vh;
+}
+.form-auth > div{
+    width: 25rem;
+    background-color: white;
+    padding: 0 0.5rem;
+}
+.form-group{
+    margin-bottom: 0.4rem !important;
+}
+.picture-user{
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+
 @media (max-width: 530px) {
 
     body *{
         font-size: 1rem;
     }
-    .lo-cities{
-        width: 2.3rem;
-        margin-bottom: 1.3rem;
-    }
     .tx-cities{
         font-size: 1.6rem
+    }
+    .hero > div > h1{
+        font-size: 4rem;
+        text-align: center;
     }
     .nav-footer a{
         text-align: center;
         margin-left: 0;
+    }   
+    header div:nth-child(2){
+        margin-right: 5rem;
+    }
+    .logo{
+        width: 2.5rem;
+    }
+    .picture-user{
+        width: 2rem;
+        height: 2rem;
+    }
+    .menu{
+        top:-2rem
     }
     .C-igms{
         width: 47%;
@@ -297,18 +341,6 @@ a{
 @media (max-width: 412px) {
     .hero p {
         font-size: 1.5rem;
-    }
-
-    .hero > div > h1{
-        font-size: 2.5rem;
-        text-align: center;
-    }
-    .logo{
-        width: 3.5rem;
-        margin-bottom: 1.3rem;
-    }
-    .C-igms h2{
-        font-size: 1rem;
     }
 }
 
