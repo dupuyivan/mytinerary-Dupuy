@@ -1,9 +1,9 @@
 const { Router } = require("express")
 const router = Router()
-const validador = require("../config/validador")
-const itineraryValidator = require("../config/itineraryValidator")
+
 
 const { getCities, getCity , postCities, delCities, putCities } = require("../controllers/citiesController")
+const validador = require("../middlewares/validador")
 
 router.route("/cities")
 .get( getCities )
@@ -17,6 +17,7 @@ router.route("/cities/:id")
 /* ------------------------------------------------------- */
 
 const { getItineraries, getById, getByCity, postItinerary, deleteItinerary, putItinerary } = require("../controllers/ItinerariesController")
+const itineraryValidator = require("../middlewares/itineraryValidator")
 
 router.route("/itineraries")
 .get( getItineraries )
@@ -30,12 +31,19 @@ router.route("/itineraries/:id")
 router.route("/itinerarybycity/:id")
 .get( getByCity )
 
-const { SignUp, SignIn } = require("../controllers/authController")
+/* -------------------------------------------------------------- */
+
+const { SignUp, SignIn, validToken } = require("../controllers/authController")
+const formValidator = require("../middlewares/formValidator")
+const passport = require("../middlewares/passport")
 
 router.route("/signup")
-.post( SignUp )
+.post(formValidator, SignUp )
 
 router.route("/signin")
 .post( SignIn )
+
+router.route("/validtoken")
+.get( passport.authenticate("jwt", { session:false }),validToken )
 
 module.exports = router 

@@ -6,12 +6,17 @@ import { Home } from "./pages/Home"
 import Cities from "./pages/Cities"
 import City from "./pages/City"
 import SignUp from "./pages/SignUp"
-import LogIn from "./pages/LogIn"
+import LogIn from "./pages/SignIn"
 import { ToastProvider } from 'react-toast-notifications';
 
+import { connect } from "react-redux"
+import authAction from"./redux/actions/authAction"
 
+function App({ validToken }) {
 
-function App() {
+  
+ if ( localStorage.getItem("user") ) { validToken() }
+
   return (
     <>
     <ToastProvider>
@@ -30,4 +35,11 @@ function App() {
   );
 }   
 
-export default App;
+const mapDispatchToProps ={
+
+  validToken:authAction.validarToken
+
+}
+
+
+export default connect(null,mapDispatchToProps)(App)

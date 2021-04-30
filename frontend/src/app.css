@@ -270,15 +270,18 @@ a{
     background-size: cover;
     display: flex;
     justify-content: flex-end;
-    min-height: 90vh;
 }
 .form-auth > div{
     width: 25rem;
     background-color: white;
     padding: 0 0.5rem;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .form-group{
-    margin-bottom: 0.4rem !important;
+    margin-bottom: 0rem!important;
 }
 .picture-user{
     width: 2.8rem;

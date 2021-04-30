@@ -1,6 +1,6 @@
 const initialState = {
     countries:[],
-    userLogued: JSON.parse( localStorage.getItem("user") ) || {}
+    userLogued: null
 }
 
 const authReducer = ( state = initialState,action )=>{
@@ -12,15 +12,17 @@ const authReducer = ( state = initialState,action )=>{
                 countries:action.payload
             };
         case "LOG_USER":
+            localStorage.setItem("user", JSON.stringify( action.payload ))
+            action.payload.token && localStorage.setItem("token", action.payload.token )
             return{
                 ...state,
                 userLogued: action.payload
             } 
         case "UNLOG_USER":
-            localStorage.removeItem("user")  
+            localStorage.clear()  
             return{
                 ...state,
-                userLogued:{}
+                userLogued: action.payload
             }
 
 

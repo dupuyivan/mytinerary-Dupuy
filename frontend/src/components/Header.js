@@ -5,23 +5,23 @@ import { connect } from "react-redux"
 import authAction from "../redux/actions/authAction"
 
 const Header = ({ logo = true ,userLogued ,unlogUser})=>{
-    
+
     return <header className={ logo ?"black": "" }>
             <div>
                 <Dropdown >
                     <Dropdown.Toggle variant="" className="text-white d-flex align-items-center" >
-                    { userLogued.picture 
+                    { userLogued 
                         ? <div className="picture-user" style={{ backgroundImage:`url('${ userLogued.picture }')` }} ></div>
                         : <div className="picture-user bg-white" style={{ backgroundImage:`url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTlBWrqkcAQADicgAlj-cH4f3sRrIzHcee7w&usqp=CAU')` }} ></div>
                         }
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="d-flex flex-column ">
-                        { userLogued.token 
-                        ? <h6 style={{ cursor:"pointer" }} onClick={ unlogUser } >Log out</h6>
+                        { userLogued
+                        ? <h6 className="ml-1" style={{ cursor:"pointer" }} onClick={ unlogUser } >Log out</h6>
                         : <>
-                            <NavLink to="/signup" className="text-dark text-center"><h6>Sign Up</h6></NavLink>
-                            <NavLink to="/login" className="text-dark pr-2 text-center"><h6>Log in</h6></NavLink> 
+                            <NavLink to="/signup" className="text-dark ml-1"><h6>Sign Up</h6></NavLink>
+                            <NavLink to="/login" className="text-dark ml-1"><h6>Log in</h6></NavLink> 
                           </>
                         }
                     </Dropdown.Menu>

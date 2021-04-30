@@ -1,5 +1,5 @@
 const User = require("../models/User")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const generateToken = require("../helpers/jwt")
 
 const SignUp = async(req,res)=>{
@@ -32,6 +32,7 @@ const SignIn = async (req,res)=>{
 
     try {
         let found = await User.findOne({email})
+        console.log( found, password )
         if (!found || !bcrypt.compareSync( password, found.password )) {
             err = "El correo o la contraseña son incorrectos"
         }else{
@@ -43,7 +44,15 @@ const SignIn = async (req,res)=>{
     res.json({ success: !err ? true : false, result, err })
 }
 
+const validToken = (req,res)=>{
+    const { name, last_name, picture } = req.user
+
+   res.json({ success:true, result:{ name, last_name, picture }  })
+}
+
+
 module.exports = {
     SignUp,
-    SignIn
+    SignIn,
+    validToken
 }
