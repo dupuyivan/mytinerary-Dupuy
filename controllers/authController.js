@@ -17,10 +17,10 @@ const SignUp = async(req,res)=>{
             user = await new User( newUser ).save() 
             result ={ name:user.name, last_name:user.last_name, picture:user.picture, token:generateToken( user ) }
 
-        }else{ err = "El email ya esta es uso" }
+        }else{ err = "The mail is already in use" }
        
     } catch (error) {
-        err = "Ha ocurrido un error"
+        err = "An error has occurred on our server"
     }
     res.json({ success: !err ? true: false , result , err })
 }
@@ -32,14 +32,13 @@ const SignIn = async (req,res)=>{
 
     try {
         let found = await User.findOne({email})
-        console.log( found, password )
         if (!found || !bcrypt.compareSync( password, found.password )) {
-            err = "El correo o la contraseña son incorrectos"
+            err = "The email or password is wrong"
         }else{
             result ={ name:found.name, last_name:found.last_name,picture:found.picture , token: generateToken( found ) } 
         }
     } catch (error) {
-        err = "Ha ocurrido un error"
+        err = "An error has occurred on our server"
     }
     res.json({ success: !err ? true : false, result, err })
 }

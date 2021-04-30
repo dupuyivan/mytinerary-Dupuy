@@ -12,10 +12,9 @@ import { ToastProvider } from 'react-toast-notifications';
 import { connect } from "react-redux"
 import authAction from"./redux/actions/authAction"
 
-function App({ validToken }) {
+function App({ validToken, userLogued }) {
 
-  
- if ( localStorage.getItem("user") ) { validToken() }
+  if ( !userLogued && localStorage.getItem("token") ) { validToken() }
 
   return (
     <>
@@ -23,10 +22,13 @@ function App({ validToken }) {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Home } />
-        <Route  path="/cities" component={ Cities } />
-        <Route  path="/city/:id" component={ City } />
-        <Route  path="/signup" component={ SignUp } />
-        <Route  path="/login" component={ LogIn } />
+        <Route path="/cities" component={ Cities } />
+        <Route path="/city/:id" component={ City } />
+        { !userLogued && <>  
+          <Route path="/signup" component={ SignUp } />
+          <Route path="/login" component={ LogIn } /> 
+          </> 
+        }
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
@@ -35,11 +37,14 @@ function App({ validToken }) {
   );
 }   
 
-const mapDispatchToProps ={
-
-  validToken:authAction.validarToken
-
+const mapStateToProps = state =>{
+  return{
+    userLogued:state.authReducer.userLogued
+  }
 }
 
+const mapDispatchToProps ={
+  validToken:authAction.validarToken
+}
 
-export default connect(null,mapDispatchToProps)(App)
+export default connect(mapStateToProps,mapDispatchToProps)(App)

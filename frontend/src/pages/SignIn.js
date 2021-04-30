@@ -6,8 +6,9 @@ import { useState } from "react"
 import { connect } from "react-redux"
 import authAction from "../redux/actions/authAction"
 import { useToasts } from "react-toast-notifications"
+import GoogleLogin from 'react-google-login';
 
-const LogIn= ({ submitForm })=>{
+const LogIn= ({ submitForm, history })=>{
     const [ datosForm, setDatosForm] = useState({ email:"", password:"" })
     const [ isInvalid , setIsInvalid] = useState(false)
     const { addToast } = useToasts()
@@ -23,15 +24,28 @@ const LogIn= ({ submitForm })=>{
         e.preventDefault()
         e.stopPropagation()
         if( !e.currentTarget.checkValidity() ){ return setIsInvalid(true)  }
-
         const res = await submitForm( "signin", datosForm )
         addToast( res.message , { appearance:res.type , autoDismiss:true })
+
+        res.type === "success" && history.push("/")
     } 
+
+    const google = async ({ profileObj }) =>{
+        let googleUser ={
+            email: profileObj.email,
+            password: profileObj.googleId,
+        }
+       const res = await submitForm( "signin" ,googleUser )
+        addToast( res.message , { appearance:res.type , autoDismiss:true })
+        
+        res.type === "success" && history.push("/")
+      }
+
     
 return<>
             <Header />
                 <div className="main form-auth ">
-                    <div>
+                    <div >
                         <div>
                             <h3 className="text-center nada">Sign In</h3>
                             <Form noValidate validated={isInvalid} onSubmit={submit}>
@@ -40,22 +54,28 @@ return<>
                             <Form.Group as={Col} md="12" controlId="validationCustom01">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control required type="email" name="email" onChange={ readFills } placeholder="Email" />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                <Form.Control.Feedback>Great!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="12" controlId="validationCustom02">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control required type="password" name="password" onChange={ readFills } placeholder="Enter password" />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                <Form.Control.Feedback>Great!</Form.Control.Feedback>
                             </Form.Group>
                                     
                             </Form.Row>
-                            <Button type="submit" className="w-100 mt-1">Sign In</Button>
+                            <Button type="submit" className="w-100 mt-2">Sign In</Button>
                             </Form>
                         </div>
                         <div>
-                            <div className="mt-2 d-flex align-items-center">
+                            <div className="mt-2 d-flex flex-wrap align-items-center">
                                 <h6>Or you can sign in with your Google account</h6>
-                                Boton google
+                                <GoogleLogin
+                                    clientId="418543337270-33q9p0j27pdhpkentid3tte7ppr43rek.apps.googleusercontent.com"
+                                    buttonText="Sign In"
+                                    onSuccess={ google }
+                                    onFailure={ google }
+                                    cookiePolicy={'single_host_origin'}
+                                />
                             </div>
 
                             <div className="mt-2 d-flex align-items-center">

@@ -12,8 +12,8 @@ const authReducer = ( state = initialState,action )=>{
                 countries:action.payload
             };
         case "LOG_USER":
-            localStorage.setItem("user", JSON.stringify( action.payload ))
-            action.payload.token && localStorage.setItem("token", action.payload.token )
+                localStorage.setItem("user", JSON.stringify( action.payload ))
+                action.payload.token && localStorage.setItem("token", action.payload.token )
             return{
                 ...state,
                 userLogued: action.payload

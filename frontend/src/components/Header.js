@@ -35,10 +35,10 @@ const Header = ({ logo = true ,userLogued ,unlogUser})=>{
                 </div>
             }
             <div>
-                <Navbar expand="md" variant="dark" className="menu" >
+                <Navbar expand="md" variant="dark" className="menu " >
                     <Navbar.Brand></Navbar.Brand>
                         <Navbar.Toggle />
-                            <Navbar.Collapse >
+                            <Navbar.Collapse className="rounded bg-nav">
                                 <Nav className="mr-auto nav">
                                     <Link to="/">
                                         <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-house" viewBox="0 0 16 16">

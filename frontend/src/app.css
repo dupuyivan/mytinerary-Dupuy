@@ -180,7 +180,7 @@ a{
     position: absolute;
     right: -2rem;
     top: -1.5rem;
-    /* background-color: black; */
+    z-index: 1;
 }
 
 .C-igms{
@@ -282,7 +282,15 @@ a{
 }
 .form-group{
     margin-bottom: 0rem!important;
+    height: 5rem;
 }
+.invalid-feedback{
+    margin-top: 0rem;
+}
+label{
+    margin-bottom: 0rem;
+}
+
 .picture-user{
     width: 2.8rem;
     height: 2.8rem;
@@ -337,6 +345,9 @@ a{
     }
     .itinerary{
         width: 80%;
+    }
+    .bg-nav{
+        background-color: black;
     }
 }
 
