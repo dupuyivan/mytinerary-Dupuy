@@ -33,7 +33,7 @@ const LogIn= ({ submitForm, history })=>{
     const google = async ({ profileObj }) =>{
         let googleUser ={
             email: profileObj.email,
-            password: profileObj.googleId,
+            password:"G"+ profileObj.googleId,
         }
        const res = await submitForm( "signin" ,googleUser )
         addToast( res.message , { appearance:res.type , autoDismiss:true })

@@ -33,7 +33,7 @@ router.route("/itinerarybycity/:id")
 
 /* -------------------------------------------------------------- */
 
-const { SignUp, SignIn, validToken } = require("../controllers/authController")
+const { SignUp, SignIn, verifyToken } = require("../controllers/authController")
 const formValidator = require("../middlewares/formValidator")
 const passport = require("../middlewares/passport")
 
@@ -43,7 +43,7 @@ router.route("/signup")
 router.route("/signin")
 .post( SignIn )
 
-router.route("/validtoken")
-.get( passport.authenticate("jwt", { session:false }),validToken )
+router.route("/verifyToken")
+.get( passport.authenticate("jwt", { session:false }),verifyToken )
 
 module.exports = router 

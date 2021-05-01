@@ -15,7 +15,7 @@ const SignUp = ({ countries,fetchCountries,submitForm,history })=>{
 
   useEffect(()=>{ 
     fetchCountries()
-    window.scrollTo(0,65)  
+    /* window.scrollTo(0,65)   */
   },[])
 
   const readForm = e =>{
@@ -39,7 +39,7 @@ const SignUp = ({ countries,fetchCountries,submitForm,history })=>{
   const google = async ({ profileObj }) =>{
     let googleUser ={
         email: profileObj.email,
-        password: profileObj.googleId,
+        password:"G"+ profileObj.googleId,
         name: profileObj.givenName,
         last_name: profileObj.familyName,
         picture:profileObj.imageUrl,

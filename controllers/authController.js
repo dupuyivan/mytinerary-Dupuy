@@ -10,12 +10,9 @@ const SignUp = async(req,res)=>{
     try{
         const res = await User.findOne({email})
         if( !res ){ 
-            const newUser = {
-                ...req.body,
-                password: bcrypt.hashSync( password, 10 )
-            }
-            user = await new User( newUser ).save() 
-            result ={ name:user.name, last_name:user.last_name, picture:user.picture, token:generateToken( user ) }
+           const user = await new User({ ...req.body, password: bcrypt.hashSync( password, 10 ) }).save() 
+
+           result ={ name:user.name, last_name:user.last_name, picture:user.picture, token:generateToken( user ) }
 
         }else{ err = "The mail is already in use" }
        
@@ -43,7 +40,7 @@ const SignIn = async (req,res)=>{
     res.json({ success: !err ? true : false, result, err })
 }
 
-const validToken = (req,res)=>{
+const verifyToken = (req,res)=>{
     const { name, last_name, picture } = req.user
 
    res.json({ success:true, result:{ name, last_name, picture }  })
@@ -53,5 +50,5 @@ const validToken = (req,res)=>{
 module.exports = {
     SignUp,
     SignIn,
-    validToken
+    verifyToken
 }

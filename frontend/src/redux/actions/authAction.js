@@ -23,7 +23,7 @@ const authAction ={
     validarToken:()=>{
 
         return(dispatch)=>{
-            fetch("http://localhost:4000/api/validtoken",{ method:"GET", headers:{ "Authorization":"Bearer "+ localStorage.getItem("token")   } })
+            fetch("http://localhost:4000/api/verifyToken",{ method:"GET", headers:{ "Authorization":"Bearer "+ localStorage.getItem("token")   } })
             .then( data => data.json())
             .then( data => dispatch({ type:"LOG_USER", payload:data.result }) )
             .catch( err => dispatch({ type:"UNLOG_USER", payload: null })  )
