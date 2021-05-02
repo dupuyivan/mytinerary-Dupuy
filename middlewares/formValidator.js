@@ -10,12 +10,10 @@ const formValidator = (req, res,next)=>{
 
     country: joi.string().trim().required().pattern( RegExp(/^[a-zA-Z ,.'-]+$/) ),
 
-    picture: joi.string().uri(),
+    picture: joi.string().required().uri(),
 
     email: joi.string().email().required(),
-    
-    google: joi.boolean(),
-
+   
     password: joi.string().required().min(4)
    })
 

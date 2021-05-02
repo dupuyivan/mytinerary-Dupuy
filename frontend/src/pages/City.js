@@ -14,7 +14,7 @@ const City = ({ cities, fetchItineraries , itineraries, history , match:{ params
     window.scrollTo(0,0)
     fetchItineraries( id )
     setcity( cities.find( element => element._id === id ) )
-  },[])
+  },[fetchItineraries, id,cities ])
 
   if(!cities.length){ history.push("/cities") }
 

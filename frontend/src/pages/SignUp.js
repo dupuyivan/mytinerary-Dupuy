@@ -15,8 +15,8 @@ const SignUp = ({ countries,fetchCountries,submitForm,history })=>{
 
   useEffect(()=>{ 
     fetchCountries()
-    /* window.scrollTo(0,65)   */
-  },[])
+    window.scrollTo(0,65)  
+  },[fetchCountries])
 
   const readForm = e =>{
     setdataForm({
@@ -28,12 +28,8 @@ const SignUp = ({ countries,fetchCountries,submitForm,history })=>{
   const submit = async e =>{
     e.preventDefault()
     e.stopPropagation()
-
     if ( !e.currentTarget.checkValidity() ) { return setIsInvalid(true)  }
-    const res = await submitForm( "signup" ,dataForm )
-    addToast( res.message , { appearance:res.type , autoDismiss:true })
-    
-    res.type === "success" && history.push("/")
+    showToast( await submitForm( "signup" ,dataForm ) )
   }
 
   const google = async ({ profileObj }) =>{
@@ -44,12 +40,13 @@ const SignUp = ({ countries,fetchCountries,submitForm,history })=>{
         last_name: profileObj.familyName,
         picture:profileObj.imageUrl,
         country:"ninguno",
-        google:true
     }
-   const res = await submitForm( "signup" ,googleUser )
-    addToast( res.message , { appearance:res.type , autoDismiss:true })
-    
-    res.type === "success" && history.push("/")
+    showToast ( await submitForm( "signup" ,googleUser ) ) 
+  }
+
+  const showToast =({ message, type })=>{
+    addToast( message, { appearance: type , autoDismiss:true })
+    type === "success" && history.push("/")
   }
 
 
@@ -104,7 +101,7 @@ return<>
                                     <Form.Control type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$"
                                      name="password" onChange={ readForm } placeholder="Enter a password" required />
                                     <Form.Control.Feedback>Great!</Form.Control.Feedback>
-                                    <Form.Control.Feedback type="invalid">Minimum four characters, at least one letter and one number</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">Minimum 4 characters and must contain a number</Form.Control.Feedback>
                                 </Form.Group>
                             </Form.Row>
                 
@@ -115,7 +112,7 @@ return<>
                         <div>
                             <div className="mt-2 d-flex align-items-center">
                                 <h6>Or you can sign up with Google</h6>
-                                <GoogleLogin
+                                <GoogleLogin className="ml-2"
                                     clientId="418543337270-33q9p0j27pdhpkentid3tte7ppr43rek.apps.googleusercontent.com"
                                     buttonText="Sign Up"
                                     onSuccess={ google }
@@ -141,7 +138,6 @@ const mapStateToProps = state =>{
     countries: state.authReducer.countries
   }
 }
-/* 418543337270-33q9p0j27pdhpkentid3tte7ppr43rek.apps.googleusercontent.com */
 const mapDispatchToProps ={
     fetchCountries: authAction.fetchCountries,
     submitForm:authAction.submitForm

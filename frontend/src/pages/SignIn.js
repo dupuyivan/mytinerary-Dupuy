@@ -24,10 +24,8 @@ const LogIn= ({ submitForm, history })=>{
         e.preventDefault()
         e.stopPropagation()
         if( !e.currentTarget.checkValidity() ){ return setIsInvalid(true)  }
-        const res = await submitForm( "signin", datosForm )
-        addToast( res.message , { appearance:res.type , autoDismiss:true })
 
-        res.type === "success" && history.push("/")
+        showToast( await submitForm( "signin", datosForm ) )
     } 
 
     const google = async ({ profileObj }) =>{
@@ -35,13 +33,14 @@ const LogIn= ({ submitForm, history })=>{
             email: profileObj.email,
             password:"G"+ profileObj.googleId,
         }
-       const res = await submitForm( "signin" ,googleUser )
-        addToast( res.message , { appearance:res.type , autoDismiss:true })
-        
-        res.type === "success" && history.push("/")
+        showToast( await submitForm( "signin" ,googleUser ) ) 
       }
 
-    
+      const showToast =({ message, type })=>{
+        addToast( message, { appearance: type , autoDismiss:true })
+        type === "success" && history.push("/")
+      }
+
 return<>
             <Header />
                 <div className="main form-auth ">

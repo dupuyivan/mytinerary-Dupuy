@@ -1,6 +1,6 @@
 const User = require("../models/User")
 const bcrypt = require("bcryptjs")
-const generateToken = require("../helpers/jwt")
+const jwt = require("jsonwebtoken")
 
 const SignUp = async(req,res)=>{
     const { email, password } = req.body
@@ -10,11 +10,11 @@ const SignUp = async(req,res)=>{
     try{
         const res = await User.findOne({email})
         if( !res ){ 
-           const user = await new User({ ...req.body, password: bcrypt.hashSync( password, 10 ) }).save() 
+           const { name,last_name, picture, _id } = await new User({ ...req.body, password: bcrypt.hashSync( password, 10 ) }).save() 
 
-           result ={ name:user.name, last_name:user.last_name, picture:user.picture, token:generateToken( user ) }
+           result ={ name, last_name, picture, token:generateToken( _id ) }
 
-        }else{ err = "The mail is already in use" }
+        }else{ err = "The email is already in use" }
        
     } catch (error) {
         err = "An error has occurred on our server"
@@ -28,11 +28,11 @@ const SignIn = async (req,res)=>{
     let err
 
     try {
-        let found = await User.findOne({email})
-        if (!found || !bcrypt.compareSync( password, found.password )) {
+        let { name, last_name, picture, _id, password:passwordUser } = await User.findOne({email})
+        if (!name || !bcrypt.compareSync( password, passwordUser )) {
             err = "The email or password is wrong"
         }else{
-            result ={ name:found.name, last_name:found.last_name,picture:found.picture , token: generateToken( found ) } 
+            result ={ name, last_name , picture, token: generateToken( _id ) } 
         }
     } catch (error) {
         err = "An error has occurred on our server"
@@ -43,12 +43,14 @@ const SignIn = async (req,res)=>{
 const verifyToken = (req,res)=>{
     const { name, last_name, picture } = req.user
 
-   res.json({ success:true, result:{ name, last_name, picture }  })
+   res.json({ success:true, result:{ name, last_name, picture } })
 }
-
 
 module.exports = {
     SignUp,
     SignIn,
     verifyToken
 }
+
+
+const generateToken = _id => jwt.sign( { _id }  , process.env.SECRET )

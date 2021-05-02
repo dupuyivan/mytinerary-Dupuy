@@ -7,21 +7,20 @@ const authAction ={
             .catch( err => console.log( err ) )
         }
     },
-    submitForm:(endpoint,datosForm)=>{
+    submitForm:(endpoint,dataForm)=>{
         return(dispatch)=>{
-         return fetch("http://localhost:4000/api/"+endpoint,{ method:"POST", headers:{ 'Content-Type': 'application/json' } , body: JSON.stringify(datosForm) })
+         return fetch("http://localhost:4000/api/"+endpoint,{ method:"POST", headers:{ 'Content-Type': 'application/json' } , body: JSON.stringify(dataForm) })
          .then( data => data.json() )
          .then( data =>{ 
             if (!data.success) { return { message:data.err , type:"error" } }
             else{ dispatch({ type:"LOG_USER", payload:data.result })
-            return {message:"Bienvenido " + data.result.name , type:"success" }  
+            return { message:"Welcome " + data.result.name , type:"success" }  
             }
          })
-         .catch( err => ({ message:"Opps! ah ocurrido un error" , type:"error"} )  )
+         .catch( err => ({ message:"oops! An error has occurred" , type:"error"} )  )
         }
     },
     validarToken:()=>{
-
         return(dispatch)=>{
             fetch("http://localhost:4000/api/verifyToken",{ method:"GET", headers:{ "Authorization":"Bearer "+ localStorage.getItem("token")   } })
             .then( data => data.json())
@@ -30,9 +29,7 @@ const authAction ={
         }
     },
     unlogUser:()=>{
-        return(dispatch)=>{
-            dispatch({ type:"UNLOG_USER", payload: null })
-        }
+        return(dispatch)=> dispatch({ type:"UNLOG_USER", payload: null })
     }
 }
 
