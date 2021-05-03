@@ -9,13 +9,13 @@ import { useToasts } from "react-toast-notifications"
 import GoogleLogin from 'react-google-login';
 
 const LogIn= ({ submitForm, history })=>{
-    const [ datosForm, setDatosForm] = useState({ email:"", password:"" })
+    const [ dataForm, setDataForm] = useState({ email:"", password:"" })
     const [ isInvalid , setIsInvalid] = useState(false)
     const { addToast } = useToasts()
 
     let readFills = e=>{
-        setDatosForm({
-        ...datosForm,
+        setDataForm({
+        ...dataForm,
         [e.target.name]:e.target.value
         })
     }
@@ -25,7 +25,7 @@ const LogIn= ({ submitForm, history })=>{
         e.stopPropagation()
         if( !e.currentTarget.checkValidity() ){ return setIsInvalid(true)  }
 
-        showToast( await submitForm( "signin", datosForm ) )
+        showToast( await submitForm( "signin", dataForm ) )
     } 
 
     const google = async ({ profileObj }) =>{
@@ -34,12 +34,12 @@ const LogIn= ({ submitForm, history })=>{
             password:"G"+ profileObj.googleId,
         }
         showToast( await submitForm( "signin" ,googleUser ) ) 
-      }
+    }
 
-      const showToast =({ message, type })=>{
+    const showToast =({ message, type })=>{
         addToast( message, { appearance: type , autoDismiss:true })
         type === "success" && history.push("/")
-      }
+    }
 
 return<>
             <Header />
