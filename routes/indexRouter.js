@@ -1,9 +1,9 @@
 const { Router } = require("express")
 const router = Router()
 
-
 const { getCities, getCity , postCities, delCities, putCities } = require("../controllers/citiesController")
 const validador = require("../middlewares/validador")
+const passport = require("../middlewares/passport")
 
 router.route("/cities")
 .get( getCities )
@@ -14,9 +14,10 @@ router.route("/cities/:id")
 .delete( delCities )
 .put( putCities )
 
-/* ------------------------------------------------------- */
+/* -------------------------------------------------------------- */
 
-const { getItineraries, getById, getByCity, postItinerary, deleteItinerary, putItinerary } = require("../controllers/ItinerariesController")
+const { getItineraries, getById, getByCity, postItinerary, deleteItinerary,
+     putItinerary, postComentary, putComentary, deleteComentary } = require("../controllers/ItinerariesController")
 const itineraryValidator = require("../middlewares/itineraryValidator")
 
 router.route("/itineraries")
@@ -31,11 +32,17 @@ router.route("/itineraries/:id")
 router.route("/itinerarybycity/:id")
 .get( getByCity )
 
+router.route("/comentary/:id")
+.post( passport.authenticate("jwt",{ session:false }), postComentary )
+
+router.route("/comentary/:id/:idComment")
+.put( passport.authenticate("jwt",{ session:false }), putComentary )
+.delete( passport.authenticate("jwt",{ session:false }), deleteComentary )
+
 /* -------------------------------------------------------------- */
 
 const { SignUp, SignIn, verifyToken } = require("../controllers/authController")
 const formValidator = require("../middlewares/formValidator")
-const passport = require("../middlewares/passport")
 
 router.route("/signup")
 .post(formValidator, SignUp )
@@ -45,5 +52,22 @@ router.route("/signin")
 
 router.route("/verifyToken")
 .get( passport.authenticate("jwt", { session:false }),verifyToken )
+
+/* -------------------------------------------------------------- */
+
+const { getActivities, getActivity, getActivityByItinerary, postActivity, putActivity, deleteActivity } = require("../controllers/activitiesController")
+
+router.route("/activities")
+.get( getActivities )
+.post( postActivity )
+
+router.route("/activities/:id")
+.get( getActivity )
+.put( putActivity )
+.delete( deleteActivity )
+
+router.route("/activitybyitinerary/:id")
+.get( getActivityByItinerary )
+
 
 module.exports = router 

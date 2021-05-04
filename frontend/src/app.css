@@ -243,7 +243,6 @@ a{
 
 .t-It{
     font-family: "Josefin Sans";
-    margin-top: 1vh;
     font-size: 2.5rem;
 }
 
@@ -255,8 +254,8 @@ a{
 }
 
 .img-autor{
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
     text-align: center;
     margin-right: 0.5rem;
     border-radius: 50%;

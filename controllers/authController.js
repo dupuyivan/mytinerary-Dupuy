@@ -53,4 +53,4 @@ module.exports = {
 }
 
 
-const generateToken = _id => jwt.sign( { _id }  , process.env.SECRET )
+const generateToken = _id => jwt.sign( { _id } , process.env.SECRET )

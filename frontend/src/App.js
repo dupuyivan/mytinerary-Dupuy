@@ -19,19 +19,19 @@ function App({ validToken, userLogued }) {
   return (
     <>
     <ToastProvider>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ Home } />
-        <Route path="/cities" component={ Cities } />
-        <Route path="/city/:id" component={ City } />
-        { !userLogued && <>  
-          <Route path="/signup" component={ SignUp } />
-          <Route path="/login" component={ LogIn } /> 
-          </> 
-        }
-        <Redirect to="/" />
-      </Switch>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+          <Route path="/cities" component={ Cities } />
+          <Route path="/city/:id" component={ City } />
+          { !userLogued && <>  
+            <Route path="/signup" component={ SignUp } />
+            <Route path="/login" component={ LogIn } /> 
+            </> 
+          }
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     </ToastProvider>
     </>
   );

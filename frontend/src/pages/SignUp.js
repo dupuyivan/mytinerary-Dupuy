@@ -41,12 +41,11 @@ const SignUp = ({countries, fetchCountries,submitForm,history })=>{
         picture:profileObj.imageUrl,
         country:"ninguno",
     }
-    showToast ( await submitForm( "signup" ,googleUser ) ) 
+    showToast( await submitForm( "signup" ,googleUser ) ) 
   }
 
   const showToast =({ message, type })=>{
     addToast( message, { appearance: type , autoDismiss:true })
-    type === "success" && history.push("/")
   }
 
 return<>
@@ -100,11 +99,11 @@ return<>
                                     <Form.Control type="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$"
                                      name="password" onChange={ readFills } placeholder="Enter a password" required />
                                     <Form.Control.Feedback>Great!</Form.Control.Feedback>
-                                    <Form.Control.Feedback type="invalid">Minimum 4 characters and must contain a number</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">Minimum 3 letters and must contain a number</Form.Control.Feedback>
                                 </Form.Group>
                             </Form.Row>
                 
-                            <Button type="submit" className="w-100 mt-1">Sing Up</Button>
+                            <Button type="submit" className="w-100 mt-1">Sign Up</Button>
                         </Form>
                      </div>
 
@@ -122,7 +121,7 @@ return<>
 
                             <div className="mt-2 d-flex align-items-center">
                                 <h6>Already have an account?</h6> 
-                                <NavLink className="ml-1 mb-1 btn btn-warning text-dark"  to="/login">Sign in here!</NavLink> 
+                                <NavLink className="ml-1 mb-1 text-info"  to="/login">Sign in here!</NavLink> 
                             </div>
                         </div>
                 </div>

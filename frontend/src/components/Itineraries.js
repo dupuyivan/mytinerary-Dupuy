@@ -1,16 +1,21 @@
 import { Accordion, Card,  Button} from "react-bootstrap"
 import Rating from "react-rating"
 import { useState } from "react";
+import Comments from "./Comments";
+import Activities from "./Activities";
+import { connect } from "react-redux"
+import itineraryAction from "../redux/actions/itinerariesAction"
 
-const Itineraries = ({ data })=>{
+const Itineraries = ({ data, fetchActivities })=>{
+    const [ visible,setVisible ]= useState(false) 
+    const [ activities, setActivities ] = useState([])
+    const fetch = async () => setActivities( await fetchActivities() )
+    console.log( data )
+    const like =()=>{ console.log( "hola" ) }
+   
+return<div className="itinerary rounded m-2 text-black bg-light">
 
-    const [visible,setVisible]= useState(false) 
-
-    if(!data){ return <h1>No hay data</h1>}
-
-return<div className="itinerary rounded m-2 text-white">
-
-            <h2 className="t-It">{ data.title }</h2>
+            <h2 className="t-It bg-info rounded">{ data.title }</h2>
             <div className="d-flex flex-column flex-wrap justify-content-center align-items-center mb-2">
                 <img className="img-autor" src={ data.author.img } alt="author"/>
                 <h3>{ data.author.name } { data.author.last_name }</h3>
@@ -32,7 +37,7 @@ return<div className="itinerary rounded m-2 text-white">
                     />
                 </div>
                 <div className="d-flex justify-content-center align-items-center" >
-                    <img style={{ width:"1.8rem",marginRight:"0.5rem" }} src={ process.cwd() + "./assets/heart.svg" } alt="icon" /> <span>{ data.likes.length }</span>
+                    <img onClick={ like } style={{ width:"1.8rem", marginRight:"0.5rem" , cursor:"pointer" }} src={ `/assets/${ visible ? "heartEmpty" : "heartFull" }.svg` } alt="icon" /> <span>{ data.likes.length }</span>
                 </div> 
             </div>
 
@@ -42,22 +47,27 @@ return<div className="itinerary rounded m-2 text-white">
             
             <Accordion defaultActiveKey="0" className="text-dark" >
                 <Card>
+                    <Accordion.Collapse eventKey="1">
+                        <Card.Body className="pt-0 mb-0">
+                          <h2 className=" bg-dark text-light rounded" >Activities</h2>
+                          <Activities activities={ activities } />
+                          <h2>Comments</h2>
+                          <Comments comments={ data.comments } />
+                        </Card.Body>
+                    </Accordion.Collapse>
                     <Card.Header>
-                    <Accordion.Toggle as={Button} onClick={ ()=> setVisible(!visible) } variant="dark" eventKey="1" >
+                    <Accordion.Toggle as={Button} onClick={ ()=>{ setVisible(!visible);fetch() }} variant="dark" eventKey="1" >
                         { visible ? "View less": "View more" }
                     </Accordion.Toggle>
                     </Card.Header>
-                    <Accordion.Collapse eventKey="1">
-                        <Card.Body>
-                            <div className="d-flex justify-content-center align-items-center">
-                                <h2>Under construction</h2>
-                                <img src="/assets/underConstruction.svg" style={{ width:"4rem" }} alt="icon"  />
-                            </div>
-                        </Card.Body>
-                    </Accordion.Collapse>
                 </Card>
             </Accordion>
     </div>
 }
 
-export default Itineraries
+const mapdispatchToProps ={
+    fetchActivities:itineraryAction.fetchActivities
+}
+
+
+export default connect(null, mapdispatchToProps) (Itineraries)
