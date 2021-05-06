@@ -5,7 +5,7 @@ const Activities = ({ activities })=>{
         {  activities &&
          activities.map( activity =>{
             return <div key={ activity.title } className="rounded" style={{ width:"15rem", height:"8rem", backgroundSize:"cover" ,backgroundImage:`url('${ activity.picture }')` }}>
-                        <h3 className="bg-light">{ activity.title }</h3>
+                        <h3 className="bg-light text-dark">{ activity.title }</h3>
                     </div> 
         }) }
     </div>

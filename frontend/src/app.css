@@ -251,6 +251,7 @@ a{
     display: flex;
     flex-flow: column ;
     text-align: center;
+    background-color: #242526;
 }
 
 .img-autor{
@@ -298,6 +299,10 @@ label{
     background-size: cover;
     background-position: center;
     border-radius: 50%;
+}
+
+.prueba{
+    background-color: #18191A;
 }
 
 

@@ -75,7 +75,7 @@ return<>
                                     <option></option>
                                     { countries.length && countries.map( country => <option key={ country.name } value={ country.name } >{ country.name }</option> ) }
                                     </Form.Control>
-                                    <Form.Control.Feedback type="invalid"> Please choose a city </Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid"> Please choose a country </Form.Control.Feedback>
                                     <Form.Control.Feedback>Great!</Form.Control.Feedback>
                                 </Form.Group>
                             </Form.Row>

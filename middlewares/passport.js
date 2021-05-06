@@ -14,4 +14,4 @@ module.exports = passport.use(new Strategy({
         done(error,false)
     }
 }
-))
+))  
