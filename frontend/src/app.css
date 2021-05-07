@@ -215,11 +215,9 @@ a{
     align-items: center;
     justify-content: center;
 }
-
 .fondo-cities h2{
     font-size: 4rem;
 }
-
 .fondo-city{ 
     width: 100%;
     height: 15rem;
@@ -230,30 +228,26 @@ a{
     background-repeat: no-repeat;
     background-position: 50% 70%; 
 }
-
 .t-city{    
     color: black;
     font-size: 4.5rem;
     font-family: "Josefin Sans";
 }
-
 .contact{
     padding-left: 2rem;
 }
-
 .t-It{
     font-family: "Josefin Sans";
     font-size: 2.5rem;
 }
-
 .itinerary{
     width: 55%;
     display: flex;
     flex-flow: column ;
     text-align: center;
     background-color: #242526;
+    color: #E4E6EB;
 }
-
 .img-autor{
     width: 5rem;
     height: 5rem;
@@ -261,7 +255,6 @@ a{
     margin-right: 0.5rem;
     border-radius: 50%;
 }   
-
 .form-auth{
     background-image: url("https://i.postimg.cc/PJYbLf5T/van.jpg");
     
@@ -291,20 +284,50 @@ a{
 label{
     margin-bottom: 0rem;
 }
-
 .picture-user{
-    width: 2.8rem;
+    width: 3.5rem;
     height: 2.8rem;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     background-size: cover;
     background-position: center;
     border-radius: 50%;
 }
-
 .prueba{
     background-color: #18191A;
 }
+.money{
+    width: 1.5rem;
+}
+.clock{
+    width: 1.2rem;
+}
+.heart{
+    width:1.8rem ;
+    margin-right: 0.5rem ;
+    cursor: pointer;
+}
+.inputComent{
+    border-radius: 1.5rem;
+    outline: none;
+}
+.butonComent{
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+}
+.pointer{
+    cursor: pointer;
+}
 
+
+.Userpicture{
+    width: 3rem ;
+    height: 3rem;
+    border-radius:50% ;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+}
 
 @media (max-width: 530px) {
 

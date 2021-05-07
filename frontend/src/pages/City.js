@@ -6,15 +6,17 @@ import { useEffect, useState } from "react"
 import Itineraries from "../components/Itineraries"
 import itinerariesAction from "../redux/actions/itinerariesAction"
 
-const City = ({ cities, fetchItineraries , itineraries, history , match:{ params:{ id } } }) =>{
-
+const City = ({ cities, fetchItineraries, history, match:{ params:{ id } } }) =>{
   const [ city, setcity ] = useState({})
+  let [ itineraries, setItineraries ] = useState([])
 
   useEffect(()=>{
     window.scrollTo(0,0)
-    fetchItineraries( id )
+    getItineraries()
     setcity( cities.find( element => element._id === id ) )
-  },[fetchItineraries, id,cities ])
+  },[id,cities])
+
+  const getItineraries = async()=>{ setItineraries( await fetchItineraries( id ) ) }
 
   if(!cities.length){ history.push("/cities") }
 
@@ -49,12 +51,11 @@ const City = ({ cities, fetchItineraries , itineraries, history , match:{ params
 const mapStateToProps = state =>{
   return{
     cities: state.citiesReducer.cities,
-    itineraries: state.itinerariesReducer.itineraries
   }
 }
 
 const mapDispatchToProps = {
-  fetchItineraries :itinerariesAction.fetchItineraries
+  fetchItineraries :itinerariesAction.fetchItineraries,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)( City ) 

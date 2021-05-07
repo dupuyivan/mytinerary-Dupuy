@@ -12,10 +12,10 @@ const SignUp = async(req,res)=>{
         if( !res ){ 
            const { name,last_name, picture, _id } = await new User({ ...req.body, password: bcrypt.hashSync( password, 10 ) }).save() 
 
-           result ={ name, last_name, picture, token:generateToken( _id ) }
+           result ={ name, last_name, picture, _id, token:generateToken( _id ) }
 
         }else{ err = "The email is already in use" }
-       
+        
     } catch (error) {
         err = "An error has occurred on our server"
     }
@@ -32,7 +32,7 @@ const SignIn = async (req,res)=>{
         if (!name || !bcrypt.compareSync( password, passwordUser )) {
             err = "The email or password is wrong"
         }else{
-            result ={ name, last_name , picture, token: generateToken( _id ) } 
+            result ={ name, last_name , picture, _id, token: generateToken( _id ) } 
         }
     } catch (error) {
         err = "An error has occurred on our server"
@@ -41,9 +41,9 @@ const SignIn = async (req,res)=>{
 }
 
 const verifyToken = (req,res)=>{
-    const { name, last_name, picture } = req.user
+    const { name, last_name, picture, _id } = req.user
 
-   res.json({ success:true, result:{ name, last_name, picture } })
+   res.json({ success:true, result:{ name, last_name, picture, _id } })
 }
 
 module.exports = {

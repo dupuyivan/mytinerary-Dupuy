@@ -2,9 +2,9 @@ const ititnerariesAction={
 
     fetchItineraries: (id)=>{
         return(distpatch,getState)=>{
-            fetch("http://localhost:4000/api/itinerarybycity/" + id)
+           return fetch("http://localhost:4000/api/itinerarybycity/" + id)
             .then(data => data.json() )
-            .then( data => distpatch({ type:"FETCH_ITINERARIES", payload: data.result }))
+            .then( data => data.result )
             .catch( err => console.log( err ) )
         }
     },
@@ -16,14 +16,24 @@ const ititnerariesAction={
             .catch( err => console.log( err ) )
         }
     },
-    like_unlike:(id_itinerary)=>{
+    getLikes:()=>{
         return()=>{
-            fetch("http://localhost:4000/api/like/" + id_itinerary ,{ 
+          /* return fetch("http://localhost:4000/api/likes",{ 
+                headers:{ "Authorization":"Bearer " + localStorage.getItem("token") }
+            })
+            .then( data => data.json() )
+            .then( data => data.result )
+            .catch( err => console.log( err ) ) */
+        }
+    },
+    like_unlike:( id_Itinerary )=>{
+        return ()=>{
+          return fetch("http://localhost:4000/api/like/" + id_Itinerary ,{ 
                 method:"POST",
                 headers:{ "Authorization":"Bearer " + localStorage.getItem("token") }
             })
             .then(data => data.json() )
-            .then( data => console.log( data ) )
+            .then( data => data.result )   
             .catch( err => console.log( err ) )
         }
     },
@@ -64,7 +74,7 @@ const ititnerariesAction={
                 body: JSON.stringify({ "comment":comentario })
             })
             .then( data => data.json())
-            .then( data => data.result )
+            .then( data => data.result  )
             .catch( err => console.log( err ) )
         }
     },

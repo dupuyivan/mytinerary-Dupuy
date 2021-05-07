@@ -12,7 +12,7 @@ const Header = ({ logo = true ,userLogued ,unlogUser})=>{
                     <Dropdown.Toggle variant="" className="text-white d-flex align-items-center" >
                     { userLogued 
                         ? <div className="picture-user" style={{ backgroundImage:`url('${ userLogued.picture }')` }} ></div>
-                        : <div className="picture-user bg-white" style={{ backgroundImage:`url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTlBWrqkcAQADicgAlj-cH4f3sRrIzHcee7w&usqp=CAU')` }} ></div>
+                        : <div className="picture-user bg-white" style={{ backgroundImage:`url('/assets/user.png')` }} ></div>
                         }
                     </Dropdown.Toggle>
 

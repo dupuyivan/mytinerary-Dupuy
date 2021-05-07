@@ -1,20 +1,35 @@
 import { Accordion, Card,  Button} from "react-bootstrap"
 import Rating from "react-rating"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Comments from "./Comments";
 import Activities from "./Activities";
-import { connect } from "react-redux"
-import itineraryAction from "../redux/actions/itinerariesAction"
+import { connect } from "react-redux";
+import itinerariesAction from "../redux/actions/itinerariesAction";
+import { useToasts } from "react-toast-notifications"
 
-const Itineraries = ({ data, fetchActivities, like_unlike })=>{
+const Itineraries = ({ data, fetchActivities, userLoggued, like_unlike })=>{
     const [ visible,setVisible ]= useState(false) 
     const [ activities, setActivities ] = useState([])
+    const { addToast } = useToasts()
+
+    const [ liked, setLiked ] = useState(false)
+    let   [ likes, setLikes ] = useState( data.likes )
     
     const fetch = async () => setActivities( await fetchActivities() )
 
-    const like =()=>{ like_unlike( data._id ) }
-   
-return<div className="itinerary rounded m-2 bg-dark" style={{ color:"#E4E6EB" }}>
+    useEffect(()=>{
+        if( userLoggued && likes.includes( userLoggued._id ) ){ setLiked( true ) }
+        else{ setLiked( false ) }
+    },[likes, data,userLoggued])
+
+    const Like_Unlike = async ()=>{
+        userLoggued 
+        ? setLikes( await like_unlike( data._id ) )
+        : addToast("You must be logued",{ appearance:"error", autoDismiss:true })
+    }
+
+
+return<div className="itinerary rounded m-2 bg-dark">
 
             <h2 className="t-It rounded">{ data.title }</h2>
             <div className="d-flex flex-column flex-wrap justify-content-center align-items-center mb-2">
@@ -26,19 +41,22 @@ return<div className="itinerary rounded m-2 bg-dark" style={{ color:"#E4E6EB" }}
                 <div className="d-flex justify-content-center align-items-center">
                     <h5>Price: </h5> 
                     <Rating readonly initialRating={ data.price }
-                    emptySymbol={ <img style={{ width:"1.5rem" }} src="/assets/moneyEmpty.svg"  className="icon ml-1"  alt="icon" /> } 
-                    fullSymbol={<img style={{ width:"1.5rem" }} src="/assets/money.svg"  className="icon ml-1" alt="icon" />}
+                    emptySymbol={ <img src="/assets/moneyEmpty.svg"  className="icon ml-1 money"  alt="icon" /> } 
+                    fullSymbol={<img src="/assets/money.svg"  className="icon ml-1 money" alt="icon" />}
                     />                       
                 </div> 
                 <div className="d-flex justify-content-center">
                     <h5>Duration: </h5> 
                     <Rating readonly initialRating={ data.duration }
-                    emptySymbol={ <img style={{ width:"1.2rem" }} src="/assets/clockEmpty.svg" className="icon ml-1" alt="icon" /> } 
-                    fullSymbol={<img style={{ width:"1.2rem" }} src="/assets/clock.svg" className="icon ml-1" alt="icon" />}
+                    emptySymbol={ <img src="/assets/clockEmpty.svg" className="icon ml-1 clock" alt="icon" /> } 
+                    fullSymbol={<img src="/assets/clock.svg" className="icon ml-1 clock" alt="icon" />}
                     />
                 </div>
                 <div className="d-flex justify-content-center align-items-center" >
-                    <img onClick={ like } style={{ width:"1.8rem", marginRight:"0.5rem" , cursor:"pointer" }} src={ `/assets/${ visible ? "heartFull" : "heartEmpty" }.svg` } alt="icon" /> <span>{ data.likes.length }</span>
+                    <img onClick={ Like_Unlike } className="money pointer" src={ `/assets/${ userLoggued && liked ? "heartFull" : "heartEmpty" }.svg` } alt="icon" /> 
+                    <span className="ml-1">
+                        { likes.length }
+                    </span>
                 </div> 
             </div>
 
@@ -49,7 +67,7 @@ return<div className="itinerary rounded m-2 bg-dark" style={{ color:"#E4E6EB" }}
             <Accordion defaultActiveKey="0" className="text-light " >
                 <Card>
                     <Accordion.Collapse eventKey="1" >
-                        <Card.Body className="pt-0 mb-0" className="bg-dark">
+                        <Card.Body className="pt-0 mb-0 bg-dark" >
                           <h2 className=" bg-dark text-light rounded" >Activities</h2>
                           <Activities activities={ activities } />
                           <h2>Comments</h2>
@@ -66,10 +84,17 @@ return<div className="itinerary rounded m-2 bg-dark" style={{ color:"#E4E6EB" }}
     </div>
 }
 
-const mapdispatchToProps ={
-    fetchActivities:itineraryAction.fetchActivities,
-    like_unlike:itineraryAction.like_unlike
+const mapStateToProps = state =>{
+    return{
+        userLoggued:state.authReducer.userLogued
+    }
 }
 
 
-export default connect(null, mapdispatchToProps) (Itineraries)
+const mapdispatchToProps ={
+    fetchActivities:itinerariesAction.fetchActivities,
+    like_unlike:itinerariesAction.like_unlike,
+}
+
+
+export default connect(mapStateToProps, mapdispatchToProps) (Itineraries)

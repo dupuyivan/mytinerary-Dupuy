@@ -17,7 +17,7 @@ router.route("/cities/:id")
 /* -------------------------------------------------------------- */
 
 const { getItineraries, getById, getByCity, postItinerary, deleteItinerary,
-     putItinerary, postComentary, putComentary, deleteComentary, postLike, deleteLike } = require("../controllers/ItinerariesController")
+     putItinerary, postComentary, putComentary, deleteComentary, getLikes , postLike, deleteLike } = require("../controllers/ItinerariesController")
 const itineraryValidator = require("../middlewares/itineraryValidator")
 
 router.route("/itineraries")
@@ -41,7 +41,9 @@ router.route("/comentary/:id/:idComment")
 
 router.route("/like/:id_Itinerary")
 .post( passport.authenticate("jwt",{ session:false }) ,postLike )
-.delete(passport.authenticate("jwt",{ session:false }), deleteLike )
+
+router.route("/likes/")
+.get( passport.authenticate("jwt",{ session:false }), getLikes )
 
 /* -------------------------------------------------------------- */
 
