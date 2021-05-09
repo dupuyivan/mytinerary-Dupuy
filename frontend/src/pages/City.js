@@ -22,7 +22,7 @@ const City = ({ cities, fetchItineraries, history, match:{ params:{ id } } }) =>
 
   return<>
           <Header />
-              <div className="main prueba" >
+              <div className="main black" >
                   <div className="fondo-city" style={{ backgroundImage:`url('${ city.img }')` }} >    
                       <div className="d-flex align-items-center justify-content-center" >
                         <h1 className="t-city rounded text-white p-1">{ city.city }</h1>

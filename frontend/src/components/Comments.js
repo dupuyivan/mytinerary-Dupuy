@@ -8,12 +8,32 @@ const Comments = ({ itinerary, userLogued, sendComment, deleteComent, updateComm
 
     const accionComent = async (action, id_coment, comment) =>{ 
 
-        if( action === "delete" ){ setNewComents( await deleteComent( itinerary._id, id_coment ) ) }
-
+        if( action === "delete" ){
+            newComents.filter( coment => coment._id !==  id_coment )
+            setNewComents( await deleteComent( itinerary._id, id_coment ) )
+          }
         else if( action === "update" && comment !== "" ){ 
-        setNewComents( await updateComment( itinerary._id, id_coment, comment ) ) }
-
-        else{  coment !== "" && setNewComents( await sendComment( itinerary._id, coment) );setComent("") }
+           setNewComents( newComents.map(coment =>{ 
+               if( coment._id ===  id_coment ){ coment.comment = comment }
+               return coment
+            }))
+        setNewComents( await updateComment( itinerary._id, id_coment, comment ) )
+         }
+            else {
+                if (coment !== "") {
+                   setNewComents([...newComents,{
+                    _id:1,
+                    comment:coment,
+                    user_id:{
+                    last_name:userLogued.last_name,
+                    name:userLogued.name,
+                    _id:userLogued._id,
+                    picture:userLogued.picture
+                }}])
+                setComent("")
+                setNewComents( await sendComment( itinerary._id, coment) );setComent("") 
+                }
+            }
     }
 
 return <div className="d-flex flex-column" >
@@ -23,13 +43,9 @@ return <div className="d-flex flex-column" >
         }
             <div>
                 <div className="d-flex align-items-center mt-2" >
-                 { userLogued 
-                    ? <div className="picture-user" style={{ backgroundImage:`url('${ userLogued.picture }')` }} ></div>
-                    : <div className="picture-user bg-white" style={{ backgroundImage:`url('/assets/user.png')` }} ></div>
-                }
+                    <div className="Comentuser" style={{ backgroundImage:`url('${ userLogued ? userLogued.picture : "/assets/user.png" }')` }} ></div>
                 <input className="ml-2 w-100 inputComent" disabled={ !userLogued && true } 
-                value={ coment } onChange={ e =>setComent( e.target.value ) } type="text" placeholder="  Write a comment" />
-        
+                value={ coment } onChange={ e =>setComent( e.target.value ) } type="text" placeholder={ userLogued ? "Write a comment" : "You must be loggued" } />
                 <img onClick={ accionComent } src="/assets/send.svg" className="pointer money" alt="send" />
                 </div>
             </div>

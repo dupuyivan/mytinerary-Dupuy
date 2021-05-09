@@ -1,5 +1,4 @@
-const { findByIdAndUpdate } = require("../models/activity")
-const Activity = require("../models/activity")
+const Activity = require("../models/Activity")
 
 const getActivities = async (req,res)=>{
     try {
@@ -21,7 +20,7 @@ const getActivity = async (req,res)=>{
 const getActivityByItinerary = async (req,res)=>{
     const { id } = req.params
     try {
-       const result = await Activity.find({city_id: id }).populate("user_id")
+       const result = await Activity.find({ id_Itinerary: id })
         res.json({ success:true , result })
     } catch (error) {
         res.json({ success:false, err:"An error has occurred on our server" })
@@ -47,7 +46,7 @@ const putActivity = async (req,res)=>{
 const deleteActivity = async (req,res)=>{
     const { id } = req.params
     try {
-        const result = Activity.findByIdAndDelete( id )
+        const result = await Activity.findByIdAndDelete( id )
         res.json({ success:true , result })
     } catch (error) {
         console.log( error )

@@ -8,11 +8,11 @@ const ititnerariesAction={
             .catch( err => console.log( err ) )
         }
     },
-    fetchActivities: ()=>{
+    fetchActivities: (id_Itinerary)=>{
         return async ()=>{
-            return fetch("http://localhost:4000/api/activities/")
+            return fetch("http://localhost:4000/api/activitybyitinerary/"+ id_Itinerary )
             .then(data => data.json() )
-            .then( data => data.result  )
+            .then( data => data.result )
             .catch( err => console.log( err ) )
         }
     },

@@ -285,15 +285,12 @@ label{
     margin-bottom: 0rem;
 }
 .picture-user{
-    width: 3.5rem;
+    width: 2.8rem;
     height: 2.8rem;
     margin-left: 0.5rem;
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-}
-.prueba{
-    background-color: #18191A;
 }
 .money{
     width: 1.5rem;
@@ -309,6 +306,9 @@ label{
 .inputComent{
     border-radius: 1.5rem;
     outline: none;
+    background-color: transparent;
+    color: white;
+    padding-left: 0.5rem;
 }
 .butonComent{
     background-color: transparent;
@@ -318,8 +318,6 @@ label{
 .pointer{
     cursor: pointer;
 }
-
-
 .Userpicture{
     width: 3rem ;
     height: 3rem;
@@ -327,6 +325,18 @@ label{
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
+}
+
+.Comentuser{
+    width: 3.2rem;
+    height: 2.8rem;
+    margin-left: 0.5rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+.coment{
+    width: 20vw;
 }
 
 @media (max-width: 530px) {

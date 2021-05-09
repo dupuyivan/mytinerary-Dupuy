@@ -10,15 +10,12 @@ const Header = ({ logo = true ,userLogued ,unlogUser})=>{
             <div>
                 <Dropdown >
                     <Dropdown.Toggle variant="" className="text-white d-flex align-items-center" >
-                    { userLogued 
-                        ? <div className="picture-user" style={{ backgroundImage:`url('${ userLogued.picture }')` }} ></div>
-                        : <div className="picture-user bg-white" style={{ backgroundImage:`url('/assets/user.png')` }} ></div>
-                        }
+                    <div className="picture-user" style={{ backgroundImage:`url('${ userLogued ? userLogued.picture : "/assets/user.png" }')` }} ></div>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="d-flex flex-column ">
                         { userLogued
-                        ? <h6 className="ml-1" style={{ cursor:"pointer" }} onClick={ unlogUser } >Log out</h6>
+                        ? <h6 className="ml-1 pointer" onClick={ unlogUser } >Log out</h6>
                         : <>
                             <NavLink to="/signup" className="text-dark ml-1"><h6>Sign Up</h6></NavLink>
                             <NavLink to="/login" className="text-dark ml-1"><h6>Log in</h6></NavLink> 

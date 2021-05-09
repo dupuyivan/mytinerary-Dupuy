@@ -32,6 +32,7 @@ const postItinerary =async(req,res)=>{
         const result = await new Itinerary( req.body ).save()
         res.json({ success:true , result })
     } catch (error) {
+        console.log( error )
         res.json({ success:false, err:"Ha ocurrido un error" })
     }
 }

@@ -11,23 +11,27 @@ const Itineraries = ({ data, fetchActivities, userLoggued, like_unlike })=>{
     const [ visible,setVisible ]= useState(false) 
     const [ activities, setActivities ] = useState([])
     const { addToast } = useToasts()
-
-    const [ liked, setLiked ] = useState(false)
-    let   [ likes, setLikes ] = useState( data.likes )
-    
-    const fetch = async () => setActivities( await fetchActivities() )
+    const [ liked, setLiked ] = useState(true)
+    const [ likes, setLikes ] = useState( data.likes )
+    const [ send, setSend ] = useState( false )
+    const fetch = async () => setActivities( await fetchActivities( data._id ) )
 
     useEffect(()=>{
         if( userLoggued && likes.includes( userLoggued._id ) ){ setLiked( true ) }
         else{ setLiked( false ) }
     },[likes, data,userLoggued])
 
-    const Like_Unlike = async ()=>{
-        userLoggued 
-        ? setLikes( await like_unlike( data._id ) )
-        : addToast("You must be logued",{ appearance:"error", autoDismiss:true })
-    }
+    const Like_Unlike = async ()=>{   
+    if(userLoggued){ 
+        liked 
+        ? setLikes( likes.filter( id => id !== userLoggued._id ) )
+        : setLikes([...likes,userLoggued._id]) 
 
+        !send && setLikes( await like_unlike( data._id ) );
+        
+    }else{ addToast("You must be logued",{ appearance:"error", autoDismiss:true }) }
+
+    }
 
 return<div className="itinerary rounded m-2 bg-dark">
 
