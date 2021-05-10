@@ -11,12 +11,12 @@ const getItineraries =async(req,res)=>{
 }
 const getById =async(req,res)=>{
     const { id } = req.params
-        try {
-            const result = await Itinerary.findById( id )
-            res.json({ success:true, result })
-        } catch (error) {
+    try {
+        const result = await Itinerary.findById( id )
+         res.json({ success:true, result })
+    } catch (error) {
             res.json({ success:false, err:"Ha ocurrido un error" })
-        }
+    }
 }
 const getByCity =async(req,res) =>{
     const { id } = req.params
@@ -96,20 +96,7 @@ const deleteComentary = async (req,res)=>{
 }
 /* -------------------- LIKES ----------------- */
 
-const getLikes = async(req,res)=>{
-   /*  const { _id:user_id } = req.user
-
-    try {
-        let result = await Itinerary.find({ "likes": user_id }, { _id:1 })
-
-        result = result.map( object => object._id )
-
-        res.json({ success:true, result })
-    } catch (error) {
-        res.json({ success:false, err:"An error a ocured" })
-    } */
-}
-const postLike = async(req,res)=>{
+const like_unlike = async(req,res)=>{
     const { id_Itinerary } = req.params
     const { _id:user_id } = req.user
 
@@ -143,6 +130,5 @@ module.exports ={
     postComentary,
     putComentary,
     deleteComentary,
-    getLikes,
-    postLike,
+    like_unlike,
 }

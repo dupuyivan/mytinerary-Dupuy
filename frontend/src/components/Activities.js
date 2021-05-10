@@ -1,10 +1,10 @@
 
 const Activities = ({ activities })=>{
 
- return <div className="d-flex justify-content-between">
+ return <div className="d-flex flex-wrap justify-content-center">
         {  activities &&
          activities.map( activity =>{
-            return <div key={ activity.title } className="rounded m-1" style={{ width:"15rem", height:"8rem", backgroundSize:"cover" ,backgroundImage:`url('${ activity.picture }')` }}>
+            return <div key={ activity.title } className="rounded m-1 activity" style={{ backgroundImage:`url('${ activity.picture }')` }}>
                         <h3 className="text-ligth city">{ activity.title }</h3>
                     </div> 
         }) }

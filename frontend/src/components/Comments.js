@@ -19,21 +19,21 @@ const Comments = ({ itinerary, userLogued, sendComment, deleteComent, updateComm
             }))
         setNewComents( await updateComment( itinerary._id, id_coment, comment ) )
          }
-            else {
-                if (coment !== "") {
-                   setNewComents([...newComents,{
-                    _id:1,
-                    comment:coment,
-                    user_id:{
-                    last_name:userLogued.last_name,
-                    name:userLogued.name,
-                    _id:userLogued._id,
-                    picture:userLogued.picture
-                }}])
-                setComent("")
-                setNewComents( await sendComment( itinerary._id, coment) );setComent("") 
-                }
+        else {
+            if (coment.trim() !== "" ) {
+                setNewComents([...newComents,{
+                _id:1,
+                comment:coment,
+                user_id:{
+                last_name:userLogued.last_name,
+                name:userLogued.name,
+                _id:userLogued._id,
+                picture:userLogued.picture
+            }}])
+            setComent("")
+            setNewComents( await sendComment( itinerary._id, coment ) );setComent("") 
             }
+        }
     }
 
 return <div className="d-flex flex-column" >
@@ -44,9 +44,9 @@ return <div className="d-flex flex-column" >
             <div>
                 <div className="d-flex align-items-center mt-2" >
                     <div className="Comentuser" style={{ backgroundImage:`url('${ userLogued ? userLogued.picture : "/assets/user.png" }')` }} ></div>
-                <input className="ml-2 w-100 inputComent" disabled={ !userLogued && true } 
-                value={ coment } onChange={ e =>setComent( e.target.value ) } type="text" placeholder={ userLogued ? "Write a comment" : "You must be loggued" } />
-                <img onClick={ accionComent } src="/assets/send.svg" className="pointer money" alt="send" />
+                    <input className="ml-2 w-100 inputComent text-light" disabled={ !userLogued && true } 
+                    value={ coment } onChange={ e =>setComent( e.target.value ) } type="text" placeholder={ userLogued ? "Write a comment" : "You must be loggued" } />
+                    <img onClick={ accionComent } src="/assets/send.svg" className="pointer money" alt="send" />
                 </div>
             </div>
 
@@ -62,7 +62,7 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = {
     sendComment: ititnerariesAction.sendComment,
     deleteComent: ititnerariesAction.deleteComent,
-    updateComment: ititnerariesAction.updateComment
+    updateComment: ititnerariesAction.updateComment,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)( Comments)

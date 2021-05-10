@@ -10,11 +10,12 @@ const City = ({ cities, fetchItineraries, history, match:{ params:{ id } } }) =>
   const [ city, setcity ] = useState({})
   let [ itineraries, setItineraries ] = useState([])
 
+
   useEffect(()=>{
-    window.scrollTo(0,0)
-    getItineraries()
-    setcity( cities.find( element => element._id === id ) )
-  },[id,cities])
+  window.scrollTo(0,0)
+  getItineraries()
+  setcity( cities.find( element => element._id === id ) )
+  },[cities,id])
 
   const getItineraries = async()=>{ setItineraries( await fetchItineraries( id ) ) }
 

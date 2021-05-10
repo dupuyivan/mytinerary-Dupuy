@@ -1,7 +1,7 @@
 const ititnerariesAction={
 
     fetchItineraries: (id)=>{
-        return(distpatch,getState)=>{
+        return()=>{
            return fetch("http://localhost:4000/api/itinerarybycity/" + id)
             .then(data => data.json() )
             .then( data => data.result )
@@ -16,16 +16,6 @@ const ititnerariesAction={
             .catch( err => console.log( err ) )
         }
     },
-    getLikes:()=>{
-        return()=>{
-          /* return fetch("http://localhost:4000/api/likes",{ 
-                headers:{ "Authorization":"Bearer " + localStorage.getItem("token") }
-            })
-            .then( data => data.json() )
-            .then( data => data.result )
-            .catch( err => console.log( err ) ) */
-        }
-    },
     like_unlike:( id_Itinerary )=>{
         return ()=>{
           return fetch("http://localhost:4000/api/like/" + id_Itinerary ,{ 
@@ -38,7 +28,7 @@ const ititnerariesAction={
         }
     },
     sendComment:(id, comentario)=>{
-        return(distpatch)=>{
+        return()=>{
            return fetch("http://localhost:4000/api/comentary/"+ id,
             {   method:"POST",
                 headers:{ 
@@ -52,7 +42,7 @@ const ititnerariesAction={
         }
     },
     deleteComent:(id_itinerary, id_coment)=>{
-        return(distpatch)=>{
+        return()=>{
             return fetch("http://localhost:4000/api/comentary/"+ id_itinerary +  "/" + id_coment ,
             {   method:"DELETE",
                 headers:{ 
@@ -65,7 +55,7 @@ const ititnerariesAction={
         }
     },
     updateComment:(id_itinerary, id_coment, comentario)=>{
-        return(distpatch)=>{
+        return()=>{
             return fetch("http://localhost:4000/api/comentary/"+ id_itinerary +  "/" + id_coment,
             {   method:"PUT",
                 headers:{ 
@@ -78,9 +68,6 @@ const ititnerariesAction={
             .catch( err => console.log( err ) )
         }
     },
-    comment:()=>{
-
-    }
 }
 
 export default ititnerariesAction

@@ -246,6 +246,7 @@ a{
     flex-flow: column ;
     text-align: center;
     background-color: #242526;
+    /* background-color: #242526; */
     color: #E4E6EB;
 }
 .img-autor{
@@ -306,7 +307,7 @@ label{
 .inputComent{
     border-radius: 1.5rem;
     outline: none;
-    background-color: transparent;
+    background-color: #3A3B3C;
     color: white;
     padding-left: 0.5rem;
 }
@@ -337,6 +338,12 @@ label{
 }
 .coment{
     width: 20vw;
+}
+.activity{
+    width: 10rem;
+    height:8rem ;
+    background-size: cover;
+    justify-self: center;
 }
 
 @media (max-width: 530px) {
