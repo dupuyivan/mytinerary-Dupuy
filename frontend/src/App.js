@@ -16,9 +16,6 @@ function App({ validToken, userLogued }) {
 
   if ( !userLogued && localStorage.getItem("token") ) { validToken() }
 
-
-
-  
   return (
     <>
     <ToastProvider>
