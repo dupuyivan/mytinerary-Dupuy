@@ -8,9 +8,9 @@ import itinerariesAction from "../redux/actions/itinerariesAction";
 import { useToasts } from "react-toast-notifications"
 
 const Itineraries = ({ data, fetchActivities, userLoggued, like_unlike })=>{
-    const [ state, setState ] = useState({ activities:[], liked:true, likes:data.likes })
+    const [ state, setState ] = useState({ activities:[], liked:true, likes:data.likes,send:false })
     const [ visible, setVisible ] = useState( true )
-    const [ send, setSend ] = useState( false )
+   /*  const [ send, setSend ] = useState( false ) */
     const { addToast } = useToasts()
 
     useEffect(()=>{
@@ -26,9 +26,9 @@ const Itineraries = ({ data, fetchActivities, userLoggued, like_unlike })=>{
         ? setState({ ...state, likes: state.likes.filter( id => id !== userLoggued._id ) })
         : setState({ ...state,likes: [...state.likes,userLoggued._id] }) 
 
-        if( !send ){
-            setState({ ...state, likes: await like_unlike( data._id )})
-            setSend( true )
+        if( !state.send ){
+            setState({ ...state, likes: await like_unlike( data._id ),send:true })
+            /* setSend( true ) */
         }
          
     }else{ addToast("You must be logued",{ appearance:"error", autoDismiss:true }) }

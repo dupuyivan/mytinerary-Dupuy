@@ -38,10 +38,9 @@ class Cities extends React.Component{
                                         </span>
                                     </div>
                                 : this.props.citiesFiltered.map( element =>{
-                                    return<div key={ element.city } className="C-igms rounded" style={{ backgroundImage:`url('${ element.img }')` }} >
-                                            <NavLink to={ "/city/"+ element._id }  >
-                                                <h2 className="city rounded p-1">{ element.city }</h2>
-                                            </NavLink>
+                                    return<div key={ element.city } className="C-igms rounded pointer" onClick={ ()=> this.props.history.push("/city/"+ element._id) } 
+                                    style={{ backgroundImage:`url('${ element.img }')` }} >
+                                            <h2 className="city text-white rounded p-1">{ element.city }</h2>
                                           </div>    
                                 })
                             }

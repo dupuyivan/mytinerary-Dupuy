@@ -3,7 +3,7 @@ const initialState = {
     userLogued: null
 }
 
-const authReducer = ( state = initialState,action )=>{
+const authReducer = ( state = initialState ,action )=>{
 
     switch (action.type) {
         case "FETCH_COUNTRIES":
