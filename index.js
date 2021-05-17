@@ -4,6 +4,8 @@ const app = express()
 const passport = require("passport")
 const path = require("path")
 
+/* anda o no anda */
+
 
 require("dotenv").config()
 require("./database/dataBase")
