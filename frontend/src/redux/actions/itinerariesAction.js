@@ -2,7 +2,7 @@ const ititnerariesAction={
 
     fetchItineraries: (id)=>{
         return()=>{
-           return fetch("http://localhost:4000/api/itinerarybycity/" + id)
+           return fetch("https://mytinerarydupuy.herokuapp.com/api/itinerarybycity/" + id)
             .then(data => data.json() )
             .then( data => data.result )
             .catch( err => console.log( err ) )
@@ -10,7 +10,7 @@ const ititnerariesAction={
     },
     fetchActivities: (id_Itinerary)=>{
         return async ()=>{
-            return fetch("http://localhost:4000/api/activitybyitinerary/"+ id_Itinerary )
+            return fetch("https://mytinerarydupuy.herokuapp.com/api/activitybyitinerary/"+ id_Itinerary )
             .then(data => data.json() )
             .then( data => data.result )
             .catch( err => console.log( err ) )
@@ -18,7 +18,7 @@ const ititnerariesAction={
     },
     like_unlike:( id_Itinerary )=>{
         return ()=>{
-          return fetch("http://localhost:4000/api/like/" + id_Itinerary ,{ 
+          return fetch("https://mytinerarydupuy.herokuapp.com/api/like/" + id_Itinerary ,{ 
                 method:"POST",
                 headers:{ "Authorization":"Bearer " + localStorage.getItem("token") }
             })
@@ -29,7 +29,7 @@ const ititnerariesAction={
     },
     sendComment:(id, comentario)=>{
         return()=>{
-           return fetch("http://localhost:4000/api/comentary/"+ id,
+           return fetch("https://mytinerarydupuy.herokuapp.com/api/comentary/"+ id,
             {   method:"POST",
                 headers:{ 
                 "Authorization":"Bearer " + localStorage.getItem("token"),
@@ -43,7 +43,7 @@ const ititnerariesAction={
     },
     deleteComent:(id_itinerary, id_coment)=>{
         return()=>{
-            return fetch("http://localhost:4000/api/comentary/"+ id_itinerary +  "/" + id_coment ,
+            return fetch("https://mytinerarydupuy.herokuapp.com/api/comentary/"+ id_itinerary +  "/" + id_coment ,
             {   method:"DELETE",
                 headers:{ 
                 "Authorization":"Bearer " + localStorage.getItem("token"),
@@ -56,7 +56,7 @@ const ititnerariesAction={
     },
     updateComment:(id_itinerary, id_coment, comentario)=>{
         return()=>{
-            return fetch("http://localhost:4000/api/comentary/"+ id_itinerary +  "/" + id_coment,
+            return fetch("https://mytinerarydupuy.herokuapp.com/api/comentary/"+ id_itinerary +  "/" + id_coment,
             {   method:"PUT",
                 headers:{ 
                 "Authorization":"Bearer " + localStorage.getItem("token"),

@@ -3,7 +3,7 @@ const citiesAction = {
 
     fetchear: () =>{
         return(dispatch,getState)=>{
-            fetch("http://localhost:4000/api/cities")
+            fetch("https://mytinerarydupuy.herokuapp.com/api/cities")
             .then(data => data.json() )
             .then( data => dispatch({ type:"FETCH_CITIES", payload:data.result }) )
             .catch( err => console.log(err) )

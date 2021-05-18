@@ -9,7 +9,7 @@ const authAction ={
     },
     submitForm:(endpoint,dataForm)=>{
         return(dispatch)=>{
-         return fetch("http://localhost:4000/api/"+endpoint,{ method:"POST", headers:{ 'Content-Type': 'application/json' } , body: JSON.stringify(dataForm) })
+         return fetch("https://mytinerarydupuy.herokuapp.com/api/"+endpoint,{ method:"POST", headers:{ 'Content-Type': 'application/json' } , body: JSON.stringify(dataForm) })
          .then( data => data.json() )
          .then( data =>{ 
             if (!data.success) { return { message:data.err , type:"error" } }
@@ -22,7 +22,7 @@ const authAction ={
     },
     validarToken:()=>{
         return(dispatch)=>{
-            fetch("http://localhost:4000/api/verifyToken",{ method:"GET", headers:{ "Authorization":"Bearer "+ localStorage.getItem("token")   } })
+            fetch("https://mytinerarydupuy.herokuapp.com/api/verifyToken",{ method:"GET", headers:{ "Authorization":"Bearer "+ localStorage.getItem("token")   } })
             .then( data => data.json())
             .then( data => dispatch({ type:"LOG_USER", payload:data.result }) )
             .catch( err => dispatch({ type:"UNLOG_USER", payload: null })  )
