@@ -1,4 +1,3 @@
-const { findOne } = require("../models/Itinerary")
 const Itinerary = require("../models/Itinerary")
 
 const getItineraries =async(req,res)=>{
