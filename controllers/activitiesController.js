@@ -18,13 +18,13 @@ const getActivity = async (req,res)=>{
     } */
 }
 const getActivityByItinerary = async (req,res)=>{
-    const { id } = req.params
+    /* const { id } = req.params
     try {
        const result = await Activity.find({ id_Itinerary: id })
         res.json({ success:true , result })
     } catch (error) {
         res.json({ success:false, err:"An error has occurred on our server" })
-    }
+    } */
 }
 const postActivity = async (req,res)=>{
     /* try {
