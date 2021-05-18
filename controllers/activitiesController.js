@@ -1,7 +1,7 @@
-/* const Activity = require("../models/Activity") */
+const Activity = require("../models/Activity")
 
 const getActivities = async (req,res)=>{
-   /*  try {
+    /* try {
        const result = await Activity.find()
         res.json({ success:true , result })
     } catch (error) {
@@ -9,7 +9,7 @@ const getActivities = async (req,res)=>{
     } */
 }
 const getActivity = async (req,res)=>{
-   /*  const { id } = req.params
+    /* const { id } = req.params
     try {
        const result = await Activity.findById( id )
         res.json({ success:true , result })
@@ -18,13 +18,13 @@ const getActivity = async (req,res)=>{
     } */
 }
 const getActivityByItinerary = async (req,res)=>{
-    /* const { id } = req.params
+    const { id } = req.params
     try {
        const result = await Activity.find({ id_Itinerary: id })
         res.json({ success:true , result })
     } catch (error) {
         res.json({ success:false, err:"An error has occurred on our server" })
-    } */
+    }
 }
 const postActivity = async (req,res)=>{
     /* try {
