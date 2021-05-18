@@ -6,7 +6,6 @@ const path = require("path")
 
 /* anda o no anda */
 
-
 require("dotenv").config()
 require("./database/dataBase")
 
