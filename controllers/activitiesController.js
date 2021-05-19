@@ -1,5 +1,5 @@
-const Activity = require("../models/Activity")
-
+/* const Activity = require("../models/Activity") */
+const User = require("../models/Activity")
 const getActivities = async (req,res)=>{
     /* try {
        const result = await Activity.find()
