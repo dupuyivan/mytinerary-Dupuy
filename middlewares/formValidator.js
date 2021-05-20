@@ -18,7 +18,7 @@ const formValidator = (req, res,next)=>{
    })
 
    const { error } = schema.validate(req.body, { abortEarly:false })
-
+   console.log( error )
    if (error) { return res.json({ err:"Some fields are wrong" }) }
 
    next()
