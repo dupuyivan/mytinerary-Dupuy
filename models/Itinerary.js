@@ -12,4 +12,3 @@ const ItinerarySchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model("Itinerary" ,ItinerarySchema)
-

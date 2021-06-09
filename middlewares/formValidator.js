@@ -8,7 +8,7 @@ const formValidator = (req, res,next)=>{
     
     last_name: joi.string().trim().min(3).max(20).required().pattern( RegExp(/^[a-zA-Z ,.'-]+$/) ),
 
-    country: joi.string().trim().required().pattern( RegExp(/^[a-zA-Z ,.'-]+$/) ),
+    country: joi.string().trim().required().pattern( RegExp(/^[a-zA-Z ,.'-]+$/) ),   
 
     picture: joi.string().required().uri(),
 
@@ -18,7 +18,6 @@ const formValidator = (req, res,next)=>{
    })
 
    const { error } = schema.validate(req.body, { abortEarly:false })
-   console.log( error )
    if (error) { return res.json({ err:"Some fields are wrong" }) }
 
    next()
