@@ -111,7 +111,7 @@ return<>
                             <div className="mt-2 d-flex align-items-center">
                                 <h6>Or you can sign up with Google</h6>
                                 <GoogleLogin className="ml-2"
-                                    clientId="418543337270-33q9p0j27pdhpkentid3tte7ppr43rek.apps.googleusercontent.com"
+                                    clientId={ process.env.CLIENT_ID_GOOGLE }
                                     buttonText="Sign Up"
                                     onSuccess={ google }
                                     onFailure={ google }

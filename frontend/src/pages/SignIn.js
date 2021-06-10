@@ -68,7 +68,7 @@ return<>
                             <div className="mt-2 d-flex flex-wrap align-items-center">
                                 <h6>Or you can sign in with your Google account</h6>
                                 <GoogleLogin
-                                    clientId="418543337270-33q9p0j27pdhpkentid3tte7ppr43rek.apps.googleusercontent.com"
+                                    clientId={ process.env.CLIENT_ID_GOOGLE }
                                     buttonText="Sign In"
                                     onSuccess={ google }
                                     onFailure={ google }
