@@ -44,7 +44,7 @@ return <div className="d-flex flex-column" >
             <div>
                 <div className="d-flex align-items-center mt-2" >
                     <div className="Comentuser" style={{ backgroundImage:`url('${ userLogued ? userLogued.picture : "/assets/user.png" }')` }} ></div>
-                    <input className="ml-2 w-100 inputComent text-light" disabled={ !userLogued && true } 
+                    <input className="ml-2 w-100 inputComent text-dark" disabled={ !userLogued && true } 
                     value={ coment } onChange={ e =>setComent( e.target.value ) } type="text" placeholder={ userLogued ? "Write a comment" : "You must be loggued" } />
                     <img onClick={ accionComent } src="/assets/send.svg" className="pointer money" alt="send" />
                 </div>
