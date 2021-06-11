@@ -307,7 +307,8 @@ label{
 .inputComent{
     border-radius: 1.5rem;
     outline: none;
-    background-color: #3A3B3C;
+    border: none;
+    background-color: whitesmoke;
     color: white;
     padding-left: 0.5rem;
 }
@@ -338,6 +339,13 @@ label{
 }
 .coment{
     width: 20vw;
+    color: black;
+}
+
+.coment-box{
+    padding-left: 0.4rem;
+    background-color: #CDCDCD;
+    border-radius: 15px;
 }
 .activity{
     width: 10rem;

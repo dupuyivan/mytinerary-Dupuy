@@ -5,16 +5,14 @@ import{ Modal ,Button} from "react-bootstrap"
 const Coment = ({ comment, accionComent, userLogued })=>{
     const [ state, setState ] = useState({ visible:false, textComent:comment.comment, edit:false, modal:false })
 
-return <div className="d-flex mt-1">
+return <div className="d-flex mt-1 align-items-center">
             <div className="mt-1 ml-2 Userpicture" style={{  backgroundImage:`url('${ comment.user_id.picture }')`}} ></div>
             
-            <div className="mt-1 ml-2 " >
+            <div className="mt-1 ml-2 coment-box" >
+
                 <div className="d-flex"> 
-                    <h5 className="text-left nada">{ comment.user_id.name } { comment.user_id.last_name }</h5>
-                    { userLogued && userLogued._id === comment.user_id._id
-                            ?  <span className="ml-2 pointer"  onClick={ ()=>{ setState({...state,visible: !state.visible, edit:false }) }} >...</span>
-                            : ""
-                    }
+                    <h5 className="text-left text-dark nada">{ comment.user_id.name } { comment.user_id.last_name }</h5>
+            
                      <div className={ userLogued ? "d-block" : "d-none" }>
                     
                         <div className={state.visible ? "d-block ml-3": "d-none"} >
@@ -29,9 +27,9 @@ return <div className="d-flex mt-1">
                 </div>
                 
                 {   !state.edit
-                    ? <p className="text-left nada coment">{ comment.comment }</p> 
+                    ? <p className="text-left nada text-dark coment">{ comment.comment }</p> 
                     : <>
-                        <input className="inputComent"
+                        <input className="inputComent text-dark" 
                         type="text" value={ state.textComent } onChange={ e => setState({...state,textComent:e.target.value}) } /> 
                         <button className="butonComent" onClick={ ()=> {accionComent( "update", comment._id, state.textComent ); setState({...state, visible:false, edit:false }) } } >
                             <img src="/assets/send.svg" className="pointer money" alt="send" />
@@ -39,6 +37,10 @@ return <div className="d-flex mt-1">
                     </>
                 }
             </div>
+            { userLogued && userLogued._id === comment.user_id._id
+                            ?  <span className="ml-2 pointer"  onClick={ ()=>{ setState({...state,visible: !state.visible, edit:false }) }} >...</span>
+                            : ""
+                    }
            
         <Modal show={state.modal} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
             <Modal.Body><h4 className="text-center">you're sure ?? </h4></Modal.Body>
